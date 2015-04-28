@@ -1,5 +1,3 @@
-<% @items.each do |item| %>
-  <%= item.title %>
-  <%= item.description %> <%= link_to 'Edit', edit_admin_item_path(item) %>
-  <%= item.price %>
+<%= @items.each do |item| %>
+  <%= render 'items/item', item: item %>
 <% end %>

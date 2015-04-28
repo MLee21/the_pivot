@@ -1,30 +1,17 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user
-  helper_method :howdy_name
-  helper_method :current_admin?
-  helper_method :hot_dog_categories
-
-  def howdy_name
-    return current_user.display_name if current_user && current_user.display?
-    return current_user.full_name    if current_user
-    "Guest"
-  end
+  helper_method :current_user, :howdy_name, :current_admin?, :hot_dog_categories, :logged_in?
 
   def hot_dog_categories
     Category.all
   end
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-
-  def current_admin?
-    current_user && current_user.admin?
+    @current_user ||= user_from_session || Guest.new
   end
 
   def logged_in?
-    !current_user.nil?
+    session[:user_id].present?
   end
 
   def logged_in_user
@@ -34,4 +21,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  private
+
+  def user_from_session
+    if session[:user_id]
+      User.find_by(id: session[:user_id])
+    end
+  end
 end

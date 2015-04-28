@@ -1,6 +1,6 @@
 <h3 class="greeting">Update This Dog</h3>
 
-<%= render partial: "form" %>
-
-
-
+<%= form_for([:admin, @item]) do |f| %>
+  <%= render "fields", f: f %>
+  <br><%= f.submit "Update", class: "btn btn-success" %>
+<% end %>
