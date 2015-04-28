@@ -1,0 +1,9 @@
+<%= form_for([:admin, @item]) do |f| %>
+  <%= f.text_field :title, placeholder: "hot dog title" %><br><br>
+  <%= f.text_field :description, placeholder: "description" %><br><br>
+  <%= f.number_field :price, placeholder: "price" %><em> dollars</em><br><br>
+  <div class="checkbox-list">
+    <%= f.collection_check_boxes(:categories, Category.all.order(:name), :id, :name) %>
+  </div>
+  <br><%= f.submit "Update", class: "btn btn-success" %>
+<% end %>

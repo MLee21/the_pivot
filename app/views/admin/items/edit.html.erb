@@ -1,12 +1,6 @@
+<h3 class="greeting">Update This Dog</h3>
 
-<h3 class="greeting">Create a New Dog</h3>
-<%= form_for(@item, url: admin_item_path) do |f| %>
-  <%= f.text_field :title, placeholder: "hot dog title" %><br>
-  <%= f.text_field :description, placeholder: "description" %><br>
+<%= render partial: "form" %>
 
-  <%= f.label :price %>
-  <%= f.number_field :price %>
 
-  <%= f.submit 'Update' %>
 
-<% end %>
