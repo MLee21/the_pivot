@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Literail</title>
+  <title>Cowboy Kyle's</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div class="container-fluid">
-<%= yield %>
-</div>
+  
+  <div class="nav">
+    <%= render partial: "layouts/navigation" %>
+  </div>
+  
+  <div class="container-fluid">
+    <h2 class="greeting logo">Cowboy Kyle's<br>Hot Dog Ranch</h2>
+  </div>
+
+  <div class="container-fluid">
+    <div class="flash">
+      <% flash.each do |type, message| %>
+        <%= content_tag :div, message, id: "flash_#{type}" %>
+      <% end %>
+    </div>    
+  </div>
+
+  <div class="container-fluid">
+    <%= yield %>
+  </div>
+
 </body>
 </html>

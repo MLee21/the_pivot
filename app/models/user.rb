@@ -6,4 +6,11 @@ class User < ActiveRecord::Base
   has_many :items, through: :item_categories
 
   has_secure_password
+
+  enum role: ["default", "admin"]
+
+  def admin?
+    role == "admin"
+  end
+
 end
