@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :items
   resources :orders
+  resources :users
 
   get      "/cart", to: "cart#get"
   get      "/home", to: "home#get"
