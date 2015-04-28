@@ -4,6 +4,6 @@ class Item < ActiveRecord::Base
   has_many :item_categories
   has_many :categories, through: :item_categories
 
-  has_attached_file :image
+  has_attached_file :image, default_url: "happy_hot_dog.jpg"
   validates_attachment_content_type :image, content_type: ["image/jpg", "image/jpeg", "image/png"]
 end

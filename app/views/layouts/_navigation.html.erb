@@ -5,11 +5,11 @@
     <div class="row">
 
       <div class="col-xs-3">
-        <h3 class="greeting">Howdy, <%= howdy_name %>!</h3>
+        <h3 class="greeting">Howdy, <%= current_user.name_to_display %>!</h3>
       </div>
 
       <div class="col-xs-3 nav-dropdown", id='admin_options'>
-        <% if current_admin? %>
+        <% if current_user.admin? %>
           <%= form_for(:option, url: :admin_options) do |f| %>
             <%= f.label "Admin Options: "%>
             <%= f.select :option_type, { "Select" => "", "Categories" => "categories", "Items" => "items", "Orders" => "orders" }, {}, :onchange => "submit()" %>
@@ -25,7 +25,7 @@
       </div>
 
       <div class="col-xs-2">
-        <% if current_user %>
+        <% if logged_in? %>
           <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-primary btn-block"%>
         <% else %>
           <%= button_to "Login", login_path, method: :get, class: "btn btn-primary btn-block" %>
