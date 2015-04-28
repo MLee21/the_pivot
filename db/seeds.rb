@@ -17,10 +17,10 @@ class Seed
   end
 
   def create_users
-    @rachel = User.create!(full_name: "Rachel Warbelow", password_digest: "password", role: 0, email: "demo_rachel@jumpstartlab.com")
-    @jeff = User.create!(full_name: "Jeff Casimir", password_digest: "password", display_name: "j3", role: 0, email: "demo_jeff@jumpstartlab.com")
-    @jorge = User.create!(full_name: "Jorge Tellez", password_digest: "password", display_name: "novohispano", role: 0, email: "demo_jorge@jumpstartlab.com")
-    @josh = User.create!(full_name: "Josh Cheek", password_digest: "password", display_name: "josh", role: 1, email: "demo_josh@jumpstartlab.com")
+    @rachel = User.create!(full_name: "Rachel Warbelow", password: "password", role: 0, email: "demo_rachel@jumpstartlab.com")
+    @jeff = User.create!(full_name: "Jeff Casimir", password: "password", display_name: "j3", role: 0, email: "demo_jeff@jumpstartlab.com")
+    @jorge = User.create!(full_name: "Jorge Tellez", password: "password", display_name: "novohispano", role: 0, email: "demo_jorge@jumpstartlab.com")
+    @josh = User.create!(full_name: "Josh Cheek", password: "password", display_name: "josh", role: 1, email: "demo_josh@jumpstartlab.com")
 
     puts "#{User.all.map(&:full_name).join(", ")} created."
   end
