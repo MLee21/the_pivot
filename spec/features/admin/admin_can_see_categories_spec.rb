@@ -9,7 +9,7 @@ RSpec.feature 'admin category view' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit root_path
 
-      select "Categories", from: "option[option]"
+      select "Categories", from: "option[option_type]"
 
       expect(page).to have_content('delicious')
     end
