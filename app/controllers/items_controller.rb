@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   def index
-    if params[:category][:category_id]
+    if params.has_key?(:category)
       category = Category.find(params[:category][:category_id])
       @items = category.items
     else
@@ -15,4 +15,5 @@ class ItemsController < ApplicationController
 
   def create
   end
+
 end
