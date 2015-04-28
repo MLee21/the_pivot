@@ -2,18 +2,12 @@ require 'rails_helper'
 
 RSpec.feature 'admin item creation' do
 
-  let(:admin) do
-    User.create(full_name: 'John Smith',
-                email: 'john@gmail.com',
-                role: 1)
-              end
-  let(:default_user) do
-    User.create(full_name: 'Adam Burns',
-                email: 'adam@gmail.com',
-                role: 0)
-              end
+  let!(:default_user) { create(:user) }
+  let!(:admin) { create(:admin) }
+
 
   scenario 'displays the items' do
+
     Item.create(title: 'chili dog', description: 'yummy', price: 100)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
     visit admin_items_path
