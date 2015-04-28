@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :hot_dog_categories
 
   def howdy_name
-    return current_user.display_name if current_user && current_user.display_name
+    return current_user.display_name if current_user && current_user.display?
     return current_user.full_name    if current_user
     "Guest"
   end

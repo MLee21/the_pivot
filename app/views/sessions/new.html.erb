@@ -1,7 +1,16 @@
-<div class="login-page">
-  <%= form_for(:session, url: :login) do |f| %>
-    <%= f.text_field :email, placeholder: "email" %><br><br>
-    <%= f.password_field :password, placeholder: "password" %><br>
-    <%= f.submit "Submit", class: "btn btn-success" %>
-  <% end %>
+<div class="row">
+
+  <div class="user-form col-xs-3">
+    <%= form_for(:session, url: :login) do |f| %>
+      <%= f.text_field :email, placeholder: "email" %><br><br>
+      <%= f.password_field :password, placeholder: "password" %><br>
+      <%= f.submit "Submit", class: "btn btn-success" %>
+    <% end %>
+  </div>
+
+  <div class="new-user col-xs-9">
+    <h3 class="greeting">No account? create one now!</h3>
+    <%= button_to "Create Account", new_user_path, method: :get, class: "btn btn-success" %>
+  </div>
+
 </div>
