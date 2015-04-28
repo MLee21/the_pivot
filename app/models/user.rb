@@ -18,4 +18,7 @@ class User < ActiveRecord::Base
     display_name && display_name != ""
   end
 
+  def name_to_display
+    display_name.presence || full_name
+  end
 end
