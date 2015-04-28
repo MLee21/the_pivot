@@ -7,11 +7,10 @@
   <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  
   <div class="nav">
     <%= render partial: "layouts/navigation" %>
   </div>
-  
+
   <div class="container-fluid">
     <h2 class="greeting logo">Cowboy Kyle's<br>Hot Dog Ranch</h2>
   </div>
@@ -21,12 +20,11 @@
       <% flash.each do |type, message| %>
         <%= content_tag :div, message, id: "flash_#{type}" %>
       <% end %>
-    </div>    
+    </div>
   </div>
 
   <div class="container-fluid">
     <%= yield %>
   </div>
-
 </body>
 </html>
