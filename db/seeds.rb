@@ -74,11 +74,12 @@ class Seed
   end
 
   def create_categories
-    Category.create!(name: "spicy", items: [Item.find(20), Item.find(13), Item.find(16)])
-    Category.create!(name: "dessert", items: [Item.find(10), Item.find(9), Item.find(8), Item.find(17)])
-    Category.create!(name: "kyle's faves", items: [Item.find(5), Item.find(20)])
-    Category.create!(name: "adult", items: [Item.find(6)])
-    Category.create!(name: "puns", items: [Item.find(8), Item.find(5)])
+    Category.create!(name: "Spicy", items: [Item.find(20), Item.find(13), Item.find(16)])
+    Category.create!(name: "Dessert", items: [Item.find(10), Item.find(9), Item.find(8), Item.find(17)])
+    Category.create!(name: "Kyle's faves", items: [Item.find(5), Item.find(20)])
+    Category.create!(name: "Real", items: [Item.find(6)])
+    Category.create!(name: "Puns", items: [Item.find(8), Item.find(5)])
+    Category.create!(name: "All Dogs", items: Item.all)
     puts "Categories Created"
   end
   
