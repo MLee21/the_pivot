@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   resources :items
   resources :orders
 
+  get      "/cart", to: "cart#get"
   get      "/home", to: "home#get"
   get     "/login", to: "sessions#new"
   post    "/login", to: "sessions#create"
+  post  "/options", to: "admin#get"
   delete "/logout", to: "sessions#destroy"
 
-  root "home#get" 
+  root "home#new" 
 end
