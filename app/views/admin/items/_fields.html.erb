@@ -5,5 +5,5 @@
 <%= f.label :price %>
 <%= f.number_field :price, placeholder: "price" %><em> dollars</em><br><br>
 <div class="checkbox-list">
-  <%= f.collection_check_boxes(:categories, Category.all.order(:name), :id, :name) %>
+  <%= f.collection_check_boxes(:category_ids, Category.all.order(:name), :id, :name) %>
 </div>
