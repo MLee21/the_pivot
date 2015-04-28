@@ -1,0 +1,25 @@
+.greeting {
+            font-family: 'Cookie', cursive;
+            font-size: 40px
+          }
+
+.logo {
+        font-size: 45px;
+      }
+
+.btn {
+        margin-top: 20px;
+     }
+
+.login-page {
+              margin-top: 20px;
+            }
+
+.nav {
+        background-color: grey;
+     }
+
+.nav-dropdown {
+                margin-top: 25px;
+                text-align: right;
+              }

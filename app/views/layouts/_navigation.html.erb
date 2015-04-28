@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <% if @login_page == true %>
+    <h3 class="greeting">Let's get you logged in!</h3>
+  <% else %>
+    <div class="row">
+
+      <div class="col-xs-3">
+        <h3 class="greeting">Howdy, <%= howdy_name %>!</h3>
+      </div>
+
+      <div class="col-xs-3 nav-dropdown">
+        <% if current_admin? %>
+          <%= form_for(:option, url: :options) do |f| %>
+            <%= f.label "Admin Options: "%>
+            <%= f.select :option, options_for_select([["Select", ""], "Categories", "Items", "Orders"]) %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="col-xs-2 nav-dropdown">
+          <%= form_for(:category, url: :items) do |f| %>
+            <%= f.label "Dog Breeds: " %>
+            <%= f.collection_select(:category_id, Category.all, :id, :name, {:prompt => 'Select'}) %>
+          <% end %>
+      </div>
+
+      <div class="col-xs-2">
+        <% if current_user %>
+          <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-primary btn-block"%>
+        <% else %>
+          <%= button_to "Login", login_path, method: :get, class: "btn btn-primary btn-block" %>
+        <% end %>
+      </div>
+
+      <div class="col-xs-2">
+        <a href="cart#get" class="btn btn-success btn-block">
+          <span class="glyphicon glyphicon-shopping-cart" style="color:white"></span><%= "\tBuy Dogs" %>
+        </a>
+      </div>
+
+    </div>
+  <% end %>
+</div>
