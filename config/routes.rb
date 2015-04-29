@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :items
   resources :orders
   resources :users
+  resources :cart
 
-  get           "/cart", to: "cart#get"
   get           "/home", to: "home#get"
   get          "/login", to: "sessions#new"
   post         "/login", to: "sessions#create"
