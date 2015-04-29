@@ -41,10 +41,11 @@
       </div>
 
       <div class="col-xs-2">
-        <a href="cart#get" class="btn btn-success btn-block">
-          <span class="glyphicon glyphicon-shopping-cart" style="color:white"></span><%= "\tBuy Dogs" %>
+        <%= link_to "Buy Dogs (#{@cart.count_all})", cart_index_path %>
+<!--         <a href="/cart" class="btn btn-success btn-block" name="cart">
+          <span class="glyphicon glyphicon-shopping-cart" style="color:white"></span><%= "\tBuy Dogs (#{@cart.count_all})" %>
         </a>
-      </div>
+ -->      </div>
 
     </div>
   <% end %>

@@ -1,0 +1,8 @@
+<% @contents.each_value do |data| %>
+  Name <%= data[0] %>
+  Price <%= data[1] %>
+  Qty <%= data[2] %>
+  Subtotal <%= data[3] %><br>
+<% end %>
+
+<%= button_to "Buy them dogs!", orders_path %>

@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :category do
-    name
+    name "sadfa"
   end
 
   sequence :name do |n|

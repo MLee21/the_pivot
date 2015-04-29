@@ -1,4 +1,3 @@
-<%= image_tag(@item.image, class: 'image_show_page') %><br>
-<%= @item.title %>
+<%= render partial: "item", locals:  { item: @item } %>
+<h3>Description</h3>
 <%= @item.description %>
-<%= @item.price_formatted %>
