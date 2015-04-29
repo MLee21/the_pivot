@@ -5,7 +5,7 @@
   <% else %>
     <div class="row">
 
-      <div class="col-xs-4">
+      <div class="col-sm-4">
         <h3 class="greeting">Howdy, <%= current_user.name_to_display %>!</h3>
         <p class="user-links">
           <%= link_to "Home", root_path %>
@@ -16,7 +16,7 @@
         </p>
       </div>
 
-      <div class="col-xs-2 nav-dropdown", id='admin_options'>
+      <div class="col-sm-2 nav-dropdown", id='admin_options'>
         <% if current_user.admin? %>
           <%= form_for(:option, url: :admin_options) do |f| %>
             <strong><em><%= f.label "Select: " %></em></strong>
@@ -25,14 +25,14 @@
         <% end %>
       </div>
 
-      <div class="col-xs-2 nav-dropdown">
+      <div class="col-sm-2 nav-dropdown">
           <%= form_for(:category, url: :items, method: :get) do |f| %>
             <strong><em><%= f.label "Search: " %></em></strong>
             <%= f.collection_select(:category_id, Category.all.order(:name), :id, :name, {:prompt => "Dog Breeds"}, onchange: "submit()") %>
           <% end %>
       </div>
 
-      <div class="col-xs-2">
+      <div class="col-sm-2">
         <% if logged_in? %>
           <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-primary btn-block"%>
         <% else %>

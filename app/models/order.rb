@@ -23,7 +23,7 @@ class Order < ActiveRecord::Base
   end
 
   def item_count(item_id)
-    items.count(id: item_id)
+    items.where(id: item_id).count
   end
 
   def item_sub_total(item_id)
