@@ -16,8 +16,12 @@
             }
 
 .nav {
-        background-color: grey;
+        background-color: #FF9900;
      }
+
+.user-orders {
+                text-align: left;
+             }
 
 .nav-dropdown {
                 margin-top: 25px;

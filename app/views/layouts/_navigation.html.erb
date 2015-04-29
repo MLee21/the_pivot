@@ -1,14 +1,22 @@
 <div class="container-fluid">
   <% if @login_page == true %>
     <h3 class="greeting">Let's get you logged in!</h3>
+    <p><%= link_to "Home", root_path %></p>
   <% else %>
     <div class="row">
 
-      <div class="col-xs-3">
+      <div class="col-xs-4">
         <h3 class="greeting">Howdy, <%= current_user.name_to_display %>!</h3>
+        <p class="user-links">
+          <%= link_to "Home", root_path %>
+          <% unless current_user.name_to_display == "Guest" %>
+            <%= link_to "Profile", user_path(current_user) %>
+            <%= link_to "Orders", orders_path %>
+          <% end %>
+        </p>
       </div>
 
-      <div class="col-xs-3 nav-dropdown", id='admin_options'>
+      <div class="col-xs-2 nav-dropdown", id='admin_options'>
         <% if current_user.admin? %>
           <%= form_for(:option, url: :admin_options) do |f| %>
             <%= f.label "Admin Options: "%>
