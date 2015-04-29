@@ -1,0 +1,23 @@
+<h3>Profile Information</h3>
+<div class="row">
+  <div class="col-xs-2">
+    <strong>
+      <p>Name:</p>
+      <p>Display name:</p>
+      <p>Email:</p>
+      <p>Role:</p>
+    </strong>
+  </div>
+  <div class="col-xs-10">
+    <p><%= current_user.full_name %></p>
+    <% if current_user.display? %>
+      <p><%= current_user.display_name %></p>
+    <% else %>
+      <p><em>no display name</em></p>
+    <% end %>
+    <p><%= current_user.email %></p>
+    <p><%= current_user.role %></p>
+  </div>
+</div>
+<%= button_to "Update Info", edit_user_path(current_user), method: :get, class: "btn btn-success" %>
+

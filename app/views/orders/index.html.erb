@@ -1,0 +1,44 @@
+<div class="user-orders">
+  
+  <strong><em>
+  <div class="row">
+    <div class="col-xs-1">
+      <p>Order ID</p>
+    </div>
+    <div class="col-xs-2">
+      <p>Date</p>
+    </div>
+    <div class="col-xs-1">
+      <p># of Items</p>
+    </div>
+    <div class="col-xs-1">
+      <p>Status</p>
+    </div>
+  </div>
+  </em></strong>
+  
+  <% @orders.each do |order| %>
+    <div class="row">
+      <div class="col-xs-1">
+        <%= link_to "order-id #{order.id}", order_path(order) %>
+      </div>
+      <div class="col-xs-2">
+        <%= order.order_date %>
+      </div>
+      <div class="col-xs-1">
+        <%= order.items.count %>
+      </div>
+      <div class="col-xs-1">
+        <%= order.status.name %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="container-fluid row">
+    <% if current_user.any_orders? %>
+      <br><em>*click order-id to view order details</em>
+    <% else %>
+      <br><em>you do not have any orders placed</em>
+    <% end %>
+  </div>
+</div>
