@@ -1,8 +1,8 @@
 class Admin::ItemsController < Admin::BaseController
 
-  # def index
-  #   @items = Item.all
-  # end
+  def index
+    @items = Item.all
+  end
 
   def new
     @item = Item.new
@@ -11,7 +11,7 @@ class Admin::ItemsController < Admin::BaseController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to admin_items_path
+      redirect_to items_path
     else
       flash[:error] = @item.errors.full_messages.join(', ')
       render :new
@@ -26,7 +26,7 @@ class Admin::ItemsController < Admin::BaseController
     @item = Item.find(params[:id])
     if @item.update(item_params)
       flash[:notice] = 'Item successfully updated'
-      redirect_to admin_items_path
+      redirect_to items_path
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class Admin::ItemsController < Admin::BaseController
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, category_ids: [])
+    params.require(:item).permit(:title, :description, :price, :image, category_ids: [])
   end
 
 end

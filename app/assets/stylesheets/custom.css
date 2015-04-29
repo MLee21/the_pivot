@@ -38,3 +38,9 @@
   margin-left: 10px;
   width: 80%;
 }
+
+.item_box {
+  height: 340px;
+  border: 1px solid #D6A47F;
+  margin-bottom: 30px !important;
+}
