@@ -15,7 +15,8 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    items.reduce(0) { |sum,item| sum += item.price }
+    price = items.reduce(0) { |sum,item| sum += item.price }
+    to_money_string(price)
   end
 
   def status
@@ -30,14 +31,18 @@ class Order < ActiveRecord::Base
     item_count(item_id) * items.find(item_id).price
   end
 
+  def to_money_string(price)
+    "#{sprintf( "$%.02f" , (price.to_f/100))}"
+  end
+
   def items_report
     report = {}
     items.each do |item|
       report[item] = []
       report[item] << item.title
-      report[item] << item.price
+      report[item] << to_money_string(item.price)
       report[item] << item_count(item.id)
-      report[item] << item_sub_total(item.id)
+      report[item] << to_money_string(item_sub_total(item.id))
     end
     report
   end
