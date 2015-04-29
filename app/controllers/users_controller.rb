@@ -4,6 +4,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def create
     @user = User.new(user_params)
 
@@ -13,6 +17,17 @@ class UsersController < ApplicationController
     else
       flash[:errors] = @user.errors.full_messages.join(", ")
       render :new
+    end
+  end
+
+  def update
+    @user = User.find(current_user.id)
+
+    if @user.update(user_params) && @user.authenticate(user_params[:password])
+      redirect_to root_path
+    else
+      flash[:errors] = "Invalid updates"
+      render :edit
     end
   end
 
