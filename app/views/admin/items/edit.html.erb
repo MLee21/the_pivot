@@ -1,6 +1,10 @@
 <h3 class="greeting">Update This Dog</h3>
 
-<%= form_for([:admin, @item]) do |f| %>
+<%= form_for([:admin, @item], html: {multipart: true}) do |f| %>
   <%= render "fields", f: f %>
+  <p>
+  <%= f.label :image, "Attach a new image" %><br />
+  <%= f.file_field :image %>
+  </p>
   <br><%= f.submit "Update", class: "btn btn-success" %>
 <% end %>
