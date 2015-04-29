@@ -19,16 +19,16 @@
       <div class="col-xs-2 nav-dropdown", id='admin_options'>
         <% if current_user.admin? %>
           <%= form_for(:option, url: :admin_options) do |f| %>
-            <%= f.label "Admin Options: "%>
-            <%= f.select :option_type, { "Select" => "", "Categories" => "categories", "Items" => "items", "Orders" => "orders" }, {}, :onchange => "submit()" %>
+            <strong><em><%= f.label "Select: " %></em></strong>
+            <%= f.select :option_type, { "Admin Options" => "", "Categories" => "categories", "Items" => "items", "Orders" => "orders" }, {}, :onchange => "submit()" %>
           <% end %>
         <% end %>
       </div>
 
       <div class="col-xs-2 nav-dropdown">
           <%= form_for(:category, url: :items, method: :get) do |f| %>
-            <%= f.label "Dog Breeds: " %>
-            <%= f.collection_select(:category_id, Category.all.order(:name), :id, :name, {:prompt => 'Select'}, onchange: "submit()") %>
+            <strong><em><%= f.label "Search: " %></em></strong>
+            <%= f.collection_select(:category_id, Category.all.order(:name), :id, :name, {:prompt => "Dog Breeds"}, onchange: "submit()") %>
           <% end %>
       </div>
 
