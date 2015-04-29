@@ -1,7 +1,14 @@
-<%= image_tag(item.image, class: 'default_image') %>
-<%= link_to(item.title, item) %>
-<%= item.description %>
-<% if current_user.admin? %>
-  <%= link_to 'Edit', edit_admin_item_path(item) %>
-<% end %>
-<%= item.price %>
+<div class="col-lg-3 col-md-4 col-sm-6">
+  <div class="item_box">
+    <%= image_tag(item.image, class: 'default_image') %><br>
+    <ul>
+      <li><%= link_to(item.title, item) %></li>
+      <li><%= item.description %></li>
+      <% if current_user.admin? %>
+        <li><%= link_to 'Edit', edit_admin_item_path(item) %></li>
+      <% end %>
+      <li><%= item.price %></li>
+    </ul>
+  </div>
+</div>
+
