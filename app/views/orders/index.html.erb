@@ -1,6 +1,37 @@
 <div class="user-orders">
   
-  <strong><em>
+
+  <strong><h4>Orders by Status</h4></strong>
+  <div class="row">
+    <strong><em>
+    <div class="col-xs-1"> 
+      <p>Ordered: </p>
+      <p>Paid: </p>
+      <p>Cancelled: </p>
+      <p>Complete: </p>
+    </div>
+    </em></strong>
+    <div class="col-xs-1">
+      <p><%= @order_counts["ordered"] %></p>
+      <p><%= @order_counts["paid"] %></p>
+      <p><%= @order_counts["cancelled"] %></p>
+      <p><%= @order_counts["complete"] %></p>
+    </div>
+  </div><br>
+  
+  <strong><h4>Orders Details (<%= @list %>)</h4>
+  <div class="row right">
+    <div class="col-xs-1">
+      <em>filter: </em>
+    </div>
+    <div class="col-xs-1">
+      <%= form_for(:status, url: :orders, method: :get) do |f| %>
+        <%= f.collection_select(:status_id, Status.all, :id, :name, {:prompt => "Select"}, onchange: "submit()") %>
+      <% end %>
+    </div>
+  </div>
+ 
+  <em>
   <div class="row">
     <div class="col-xs-1">
       <p>Order ID</p>
@@ -29,7 +60,7 @@
         <%= order.items.count %>
       </div>
       <div class="col-xs-1">
-        <%= order.status.name %>
+        <%= order.status %>
       </div>
     </div>
   <% end %>

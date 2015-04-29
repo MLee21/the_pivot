@@ -21,6 +21,14 @@ class User < ActiveRecord::Base
     orders.size > 0
   end
 
+  def orders_by_status
+    order_counts = {"ordered" => 0, "paid" => 0, "cancelled" => 0, "complete" => 0}
+    orders.each do |order|
+      order_counts[order.status] += 1
+    end
+    order_counts
+  end
+
   def name_to_display
     display_name.presence || full_name
   end
