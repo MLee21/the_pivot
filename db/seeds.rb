@@ -60,7 +60,7 @@ class Seed
   end
 
   def create_orders
-    Order.create!(user_id: @rachel.id, status_id: @ordered.id, order_date: DateTime.new(2015, 4, 5), items: [Item.find(16)])
+    Order.create!(user_id: @rachel.id, status_id: @ordered.id, order_date: DateTime.new(2015, 4, 5), items: [Item.find(16), Item.find(9), Item.find(16), Item.find(16), Item.find(2), Item.find(2)])
     Order.create!(user_id: @rachel.id, status_id: @paid.id, order_date: DateTime.new(2015, 4, 6), items: [Item.find(2), Item.find(4)])
     Order.create!(user_id: @jeff.id, status_id: @ordered.id, order_date: DateTime.new(2015, 4, 7), items: [Item.find(5)])
     Order.create!(user_id: @jeff.id, status_id: @paid.id, order_date: DateTime.new(2015, 4, 8), items: [Item.find(4)])
