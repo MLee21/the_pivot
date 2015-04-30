@@ -27,7 +27,6 @@ RSpec.feature 'admin item creation' do
 
       expect(page).to have_content("Cowboy Kyle's Hotdog Ranch")
       expect(page).to have_content('pizza dog')
-      expect(page).to have_content("those aren't chickenpox on that dog")
     end
   end
 

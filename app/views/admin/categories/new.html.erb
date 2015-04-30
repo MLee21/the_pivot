@@ -1,0 +1,7 @@
+<div class="category-form col-xs-3">
+  <%= form_for([:admin, @category]) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'name' %>
+    <%= f.submit 'Create category', class: 'btn btn-success' %>
+  <% end %>
+</div>
