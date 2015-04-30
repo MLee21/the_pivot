@@ -1,8 +1,13 @@
-<% @contents.each_value do |data| %>
-  Name <%= data[0] %>
-  Price <%= data[1] %>
-  Qty <%= data[2] %>
-  Subtotal <%= data[3] %><br>
+<% @contents.each_pair do |item, data| %>
+  Name <%= item.title %>
+  Price <%= item.price %>
+  Quantity <%= data[:quantity] %>
+  Subtotal <%= data[:subtotal] %>
+  <%= button_to "+", cart_path(id: item.id, adjust: "increase"), method: :patch %>
+  <%= button_to "-", cart_path(id: item.id, adjust: "decrease"), method: :patch %>
+  <%= button_to "Remove", cart_path(id: item.id), class: "bt btn-danger", method: :delete %>
 <% end %>
 
-<%= button_to "Buy them dogs!", orders_path %>
+<h3>Total: <%= @total %></h3>
+
+<br><%= button_to "Buy them dogs!", orders_path, class: "btn btn-success" %>
