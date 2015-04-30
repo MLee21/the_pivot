@@ -16,22 +16,27 @@ class OrdersController < ApplicationController
   end
 
   def create
-    status = Status.find_by(name: "ordered")     
-    order  = Order.new(order_date: Time.now, user_id: current_user.id, status_id: status.id )
-    
-    session[:cart].each_pair do |item_id, quantity|
-      quantity.times do 
-        order.items << Item.find(item_id)
-      end
-    end
-
-    if order.save
-      flash[:notice] = "Order successfully created!"
-      session[:cart] = nil
-      redirect_to order_path(order)
+    if !logged_in?
+     flash[:notice] = "Please log in to place an order."
+     redirect_to login_path
     else
-      flash[:errors] = order.errors.full_messages.join(", ")
-      redirect_to cart_index_path
+      status = Status.find_by(name: "ordered")     
+      order  = Order.new(order_date: Time.now, user_id: current_user.id, status_id: status.id )
+      
+      session[:cart].each_pair do |item_id, quantity|
+        quantity.times do 
+          order.items << Item.find(item_id)
+        end
+      end
+
+      if order.save
+        flash[:notice] = "Order successfully created!"
+        session[:cart] = nil
+        redirect_to order_path(order)
+      else
+        flash[:errors] = order.errors.full_messages.join(", ")
+        redirect_to cart_index_path
+      end
     end
   end
 
