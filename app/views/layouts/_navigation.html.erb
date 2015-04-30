@@ -1,52 +1,47 @@
-<div class="container-fluid">
-  <% if @login_page == true %>
-    <h3 class="greeting">Let's get you logged in!</h3>
-    <p><%= link_to "Home", root_path %></p>
-  <% else %>
-    <div class="row">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <h3>Howdy, <%= current_user.name_to_display %>!</h3>
+    </div>
 
-      <div class="col-sm-4">
-        <h3 class="greeting">Howdy, <%= current_user.name_to_display %>!</h3>
-        <p class="user-links">
-          <%= link_to "Home", root_path %>
-          <% unless current_user.name_to_display == "Guest" %>
-            <%= link_to "Profile", user_path(current_user) %>
-            <%= link_to "Orders", orders_path %>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="navbar_reg_links"><%= link_to "Home", root_path %></li>
+        <% unless current_user.name_to_display == "Guest" %>
+            <li class="navbar_reg_links"><%= link_to "Profile", user_path(current_user) %></li>
+            <li class="navbar_reg_links"><%= link_to "Orders", orders_path %></li>
+        <% end %>
+        <li class="nav-dropdown">
+          <%= form_for(:category, url: :items, method: :get) do |f| %>
+            <strong><em><%= f.label "Search: " %></em></strong>
+            <%= f.collection_select(:id, Category.all.order(:name), :id, :name, {:prompt => "Dog Breeds"}, onchange: "submit()") %>
           <% end %>
-        </p>
-      </div>
-
-      <div class="col-sm-2 nav-dropdown", id='admin_options'>
+        </li>
+        <li class="nav-dropdown", id='admin_options'>
         <% if current_user.admin? %>
           <%= form_for(:option, url: :admin_options) do |f| %>
             <strong><em><%= f.label "Select: " %></em></strong>
             <%= f.select :option_type, { "Admin Options" => "", "Categories" => "categories", "Items" => "items", "Orders" => "orders" }, {}, :onchange => "submit()" %>
           <% end %>
         <% end %>
-      </div>
-
-      <div class="col-sm-2 nav-dropdown">
-          <%= form_for(:category, url: :items, method: :get) do |f| %>
-            <strong><em><%= f.label "Search: " %></em></strong>
-            <%= f.collection_select(:id, Category.all.order(:name), :id, :name, {:prompt => "Dog Breeds"}, onchange: "submit()") %>
-          <% end %>
-      </div>
-
-      <div class="col-sm-2">
-        <% if logged_in? %>
+      </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><% if logged_in? %>
           <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-primary btn-block"%>
         <% else %>
           <%= button_to "Login", login_path, method: :get, class: "btn btn-primary btn-block" %>
-        <% end %>
-      </div>
-
-      <div class="col-xs-2">
-        <%= link_to "Buy Dogs (#{@cart.count_all})", cart_index_path %>
-<!--         <a href="/cart" class="btn btn-success btn-block" name="cart">
-          <span class="glyphicon glyphicon-shopping-cart" style="color:white"></span><%= "\tBuy Dogs (#{@cart.count_all})" %>
-        </a>
- -->      </div>
-
-    </div>
-  <% end %>
-</div>
+        <% end %></li>
+        <li><%= link_to "View Dogs in Cart (#{@cart.count_all})", cart_index_path, class: "reg_btn" %></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
