@@ -31,39 +31,26 @@
     </div>
   </div>
  
-  <em>
-  <div class="row">
-    <div class="col-xs-1">
-      <p>Order ID</p>
-    </div>
-    <div class="col-xs-2">
-      <p>Date</p>
-    </div>
-    <div class="col-xs-1">
-      <p># of Items</p>
-    </div>
-    <div class="col-xs-1">
-      <p>Status</p>
-    </div>
-  </div>
-  </em></strong>
-  
-  <% @orders.each do |order| %>
-    <div class="row">
-      <div class="col-xs-1">
-        <%= link_to "order-id #{order.id}", order_path(order) %>
-      </div>
-      <div class="col-xs-2">
-        <%= order.order_date %>
-      </div>
-      <div class="col-xs-1">
-        <%= order.items.count %>
-      </div>
-      <div class="col-xs-1">
-        <%= order.status %>
-      </div>
-    </div>
-  <% end %>
+  <table class="orders_table">
+    <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Date</th>
+      <th># of Items</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to "order-id #{order.id}", order_path(order) %></td>
+          <td><%= order.order_date.to_date %></td>
+          <td><%= order.items.count %></td>
+          <td><%= order.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
   <div class="container-fluid row">
     <% if current_user.any_orders? %>
