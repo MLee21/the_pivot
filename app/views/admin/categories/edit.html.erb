@@ -1,0 +1,8 @@
+<h3 class="greeting">Edit Category</h3>
+<%= form_for(@category, url: admin_category_path) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, placeholder: :name %>
+
+  <%= f.submit "Update" %>
+
+<% end %>
