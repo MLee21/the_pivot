@@ -13,12 +13,12 @@ RSpec.feature "user adds items to cart" do
 
     expect(page).to have_content("Super Dog")
     click_link_or_button "Add to Cart"
-    expect(page).to have_content("Buy Dogs (1)")
+    expect(page).to have_content("View Dogs in Cart (1)")
 
     fill_in "order[quantity]", with: "3"
 
     click_link_or_button "Add to Cart"
-    expect(page).to have_content("Buy Dogs (4)")
+    expect(page).to have_content("View Dogs in Cart (4)")
   end
 
   scenario "as a logged in user from the items index" do
@@ -31,13 +31,13 @@ RSpec.feature "user adds items to cart" do
 
     click_link_or_button "Add to Cart"
 
-    expect(page).to have_content("Buy Dogs (1)")
+    expect(page).to have_content("View Dogs in Cart (1)")
 
     fill_in "order[quantity]", with: "3"
 
     click_link_or_button "Add to Cart"
 
-    expect(page).to have_content("Buy Dogs (4)")
+    expect(page).to have_content("View Dogs in Cart (4)")
   end
 
   scenario "as a logged in user from the item path" do
@@ -50,7 +50,7 @@ RSpec.feature "user adds items to cart" do
     fill_in "order[quantity]", with: "3"
     click_link_or_button "Add to Cart"
 
-    expect(page).to have_content("Buy Dogs (3)")
+    expect(page).to have_content("View Dogs in Cart (3)")
   end
 
 
