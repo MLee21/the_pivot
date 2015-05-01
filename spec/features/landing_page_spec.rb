@@ -11,9 +11,9 @@ RSpec.feature "landing page" do
 
     expect(page).to have_content("Howdy, Guest!")
     expect(page).to have_content("Cowboy Kyle's Hotdog Ranch")
-    expect(page).to have_link("Checkout our dogs!")
+    expect(page).to have_link("View Dogs in Cart")
     expect(page).to have_button("Login")
-    expect(page).to have_content("Buy Dogs")
+    expect(page).to have_content("View Dogs in Cart")
     expect(page).to have_select("category_id")
   end
 end
