@@ -1,0 +1,34 @@
+<h4>Purchaser</h4>
+<p>
+  <%= @order.user.full_name %><br>
+  <%= @order.user.email %>
+</p>
+
+<h4>Date</h4>
+<p>
+  <%= @order.date %>
+
+<h4>Time</h4>
+<p>
+  <%= @order.time %>
+</p>
+
+<h4>Total</h4>
+<p>
+  <%= @order.total %>
+</p>
+
+<h4>Status</h4>
+<p>
+  <%= @order.status %>
+</p>
+
+<h4>Items</h4>
+  <% @order.items_report.each_pair do |item, value| %>
+  <p>
+    Name: <%= link_to value[0], item_path(item) %>
+    Price: <%= value[1] %>
+    Count: <%= value[2] %>
+    Sub total: <%= value[3] %>
+  </p>
+  <% end %>
