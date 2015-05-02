@@ -34,4 +34,10 @@ class ApplicationController < ActionController::Base
       User.find_by(id: session[:user_id])
     end
   end
+
+  def ensure_admin_user
+    unless current_user.admin?
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+    end
+  end
 end
