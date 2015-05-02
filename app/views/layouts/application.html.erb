@@ -9,7 +9,11 @@
 </head>
 <body>
   <div class="nav">
+  <% if current_user.admin? %>
+    <%= render partial: "layouts/admin_navigation" %>
+  <% else %>
     <%= render partial: "layouts/navigation" %>
+  <% end %>
   </div>
 
   <!-- <div class="container-fluid">
