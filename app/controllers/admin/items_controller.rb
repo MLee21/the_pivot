@@ -1,5 +1,6 @@
 class Admin::ItemsController < Admin::BaseController
-
+  before_action :ensure_admin_user
+  
   def index
     @items = Item.all
   end
