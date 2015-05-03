@@ -47,7 +47,15 @@
   height: 340px;
   border: 1px solid #D6A47F;
   margin-bottom: 30px !important;
-  background-color: white;
+  background-color: #EDC093;
+}
+
+.item_box img {
+  margin-top: 20px;
+}
+
+.item_box ul {
+  list-style: none;
 }
 
 .btn {
