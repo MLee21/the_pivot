@@ -13,7 +13,7 @@ RSpec.describe 'admin item edit' do
     it 'allows admin to edit items' do
       Item.create(title: 'chili dog', description: 'yummy', price: 100)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-      visit items_path
+      visit admin_items_path
       expect(page).to have_content('chili dog')
 
       click_link_or_button 'Edit'
