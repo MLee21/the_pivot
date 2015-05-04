@@ -37,5 +37,4 @@ class Admin::ItemsController < Admin::BaseController
   def item_params
     params.require(:item).permit(:title, :description, :price, :image, :discontinue, category_ids: [])
   end
-
 end
