@@ -1,4 +1,5 @@
 class Order < ActiveRecord::Base
+  
   validates :order_date, presence: true
 
   belongs_to :user
@@ -35,6 +36,14 @@ class Order < ActiveRecord::Base
     "#{sprintf( "$%.02f" , (price.to_f/100))}"
   end
 
+  def add_items(cart_contents, order)
+    cart_contents.each_pair do |item_id, quantity|
+      quantity.times do 
+        order.items << Item.find(item_id)
+      end
+    end
+  end
+
   def items_report
     report = {}
     items.each do |item|
@@ -45,6 +54,11 @@ class Order < ActiveRecord::Base
       report[item] << to_money_string(item_sub_total(item.id))
     end
     report
+  end
+
+  def self.generate_order(current_user)
+    status = Status.find_by(name: "ordered")     
+    new(order_date: Time.now, user_id: current_user.id, status_id: status.id )
   end
 
 end
