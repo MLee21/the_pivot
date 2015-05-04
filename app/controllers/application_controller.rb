@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :load_cart, :howdy_name, 
-                :current_admin?, :hotdog_categories, :logged_in?
+                :current_admin?, :hotdog_categories, :logged_in?,
+                :show_available_items
 
   before_action :load_cart
 
