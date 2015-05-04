@@ -17,16 +17,11 @@ class Cart
     contents.values.sum
   end
 
-  def item_sub_total(item_id, quantity)
-    quantity * Item.find(item_id).price
-  end
-
   def current_contents
     cart_info = {}
     contents.each_pair do |item_id, quantity|
       item     = Item.find(item_id.to_i)
-      subtotal = to_money_string(item_sub_total(item.id, quantity))
-      cart_info[item] = {quantity: quantity, subtotal: subtotal}
+      cart_info[item] = cart_parse(item, quantity)
     end
     sanitize(cart_info)
   end
@@ -37,7 +32,8 @@ class Cart
 
   def total
     total = contents.reduce(0) do |total, (item_id, quantity)|
-      total += item_sub_total(item_id.to_i, quantity)
+      item = Item.find(item_id.to_i)
+      total += item_subtotal(item, quantity)
     end
     to_money_string(total)
   end

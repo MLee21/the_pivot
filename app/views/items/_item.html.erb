@@ -3,7 +3,7 @@
     <%= image_tag(item.image, class: 'default_image') %><br>
     <ul>
       <li><%= link_to(item.title, item) %></li>
-      <li>Price: <%= item.price_formatted %></li>
+      <li>Price: <%= item.to_money_string(item.price) %></li>
         <%= form_for(:order, url: :cart_index) do |f| %>
           <%= f.number_field :quantity, value: 1, min: 1, max: 25, maxlength: 2 %>
           <%= f.hidden_field :item_id, value: item.id %>
