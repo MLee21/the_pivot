@@ -1,4 +1,5 @@
 class Guest
+
   def admin?
     false
   end
@@ -6,4 +7,5 @@ class Guest
   def name_to_display
     "Guest"
   end
+
 end
