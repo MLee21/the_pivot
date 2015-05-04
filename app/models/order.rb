@@ -1,11 +1,13 @@
 class Order < ActiveRecord::Base
-  
+
   validates :order_date, presence: true
 
   belongs_to :user
   belongs_to :status
   has_many :order_items
   has_many :items, through: :order_items
+
+  include ContentReport
 
   def date
     order_date.to_date
@@ -28,12 +30,8 @@ class Order < ActiveRecord::Base
     items.where(id: item_id).count
   end
 
-  def item_sub_total(item_id)
-    item_count(item_id) * items.find(item_id).price
-  end
-
-  def to_money_string(price)
-    "#{sprintf( "$%.02f" , (price.to_f/100))}"
+  def item_sub_total(item_id, quantity)
+    quantity * items.find(item_id).price
   end
 
   def add_items(cart_contents, order)
@@ -47,11 +45,10 @@ class Order < ActiveRecord::Base
   def items_report
     report = {}
     items.each do |item|
-      report[item] = []
-      report[item] << item.title
-      report[item] << to_money_string(item.price)
-      report[item] << item_count(item.id)
-      report[item] << to_money_string(item_sub_total(item.id))
+      quantity = item_count(item.id)
+      subtotal = to_money_string(item_sub_total(item.id, quantity))
+      price    = to_money_string(item.price)
+      report[item] = {price: price, quantity: quantity, subtotal: subtotal}
     end
     report
   end

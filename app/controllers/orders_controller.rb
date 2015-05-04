@@ -12,7 +12,8 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order   = Order.find(params[:id])
+    @details = @order.items_report
   end
 
   def create
