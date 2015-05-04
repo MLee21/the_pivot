@@ -22,16 +22,8 @@ class Order < ActiveRecord::Base
     to_money_string(price)
   end
 
-  # def status
-  #   Status.find(status_id).name
-  # end
-
   def item_count(item_id)
     items.where(id: item_id).count
-  end
-
-  def item_sub_total(item_id, quantity)
-    quantity * items.find(item_id).price
   end
 
   def add_items(cart_contents, order)
@@ -46,15 +38,9 @@ class Order < ActiveRecord::Base
     report = {}
     items.each do |item|
       quantity = item_count(item.id)
-      subtotal = to_money_string(item_sub_total(item.id, quantity))
-      price    = to_money_string(item.price)
-      report[item] = {price: price, quantity: quantity, subtotal: subtotal}
+      report[item] = cart_parse(item, quantity)
     end
     report
-  end
-
-  def ordered_count(name)
-    statuses.where(name: name).count
   end
 
   def self.generate_order(current_user)
