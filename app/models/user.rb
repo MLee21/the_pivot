@@ -22,11 +22,20 @@ class User < ActiveRecord::Base
   end
 
   def orders_by_status
-    order_counts = {"ordered" => 0, "paid" => 0, "cancelled" => 0, "complete" => 0}
-    orders.each do |order|
-      order_counts[order.status.name] += 1
+    {"cancelled" => count(orders, "cancelled"),
+     "complete"  => count(orders, "complete"),
+     "ordered"   => count(orders, "ordered"), 
+     "paid"      => count(orders, "paid")
+    }
+  end
+
+  private
+
+  def count(orders, status, count = 0)
+    orders.each do |order| 
+      count += 1 if order.status.name == status
     end
-    order_counts
+    count
   end
 
 end
