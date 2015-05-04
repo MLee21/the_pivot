@@ -22,10 +22,15 @@ class User < ActiveRecord::Base
   end
 
   def orders_by_status
-    {"cancelled" => count(orders, "cancelled"),
-     "complete"  => count(orders, "complete"),
-     "ordered"   => count(orders, "ordered"), 
-     "paid"      => count(orders, "paid")
+    if admin?
+      order_list = Order.all
+    else
+      order_list = orders
+    end
+    {"cancelled" => count(order_list, "cancelled"),
+     "completed"  => count(order_list, "completed"),
+     "ordered"   => count(order_list, "ordered"), 
+     "paid"      => count(order_list, "paid")
     }
   end
 
