@@ -1,11 +1,19 @@
+<div class="row">
+  <div class="col-md-3">Title</div>
+  <div class="col-md-2">Price</div>
+  <div class="col-md-1">Quantity</div>
+</div>
+<hr>
 <% @contents.each_pair do |item, data| %>
-  Name <%= item.title %>
-  Price <%= item.price %>
-  Quantity <%= data[:quantity] %>
-  Subtotal <%= data[:subtotal] %>
-  <%= button_to "+", cart_path(id: item.id, adjust: "increase"), method: :patch %>
-  <%= button_to "-", cart_path(id: item.id, adjust: "decrease"), method: :patch %>
-  <%= button_to "Remove", cart_path(id: item.id), class: "bt btn-danger", method: :delete %>
+<div class="row">
+  <div class="col-md-3"><%= item.title %></div>
+  <div class="col-md-2"><%= item.price_formatted %></div>
+  <div class="col-md-1"><%= data[:quantity] %> </div>
+  <div class="col-md-1"><%= button_to "+", cart_path(id: item.id, adjust: "increase"), method: :patch %></div>
+  <div class="col-md-1"><%= button_to "-", cart_path(id: item.id, adjust: "decrease"), method: :patch %></div>
+  <div class="col-md-1"><%= button_to "Remove", cart_path(id: item.id), class: "bt btn-danger", method: :delete %></div>
+  <div class="col-md-1"><%= data[:subtotal] %></div>
+</div>
 <% end %>
 
 <h3>Total: <%= @total %></h3>
