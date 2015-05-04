@@ -24,11 +24,11 @@
 </p>
 
 <h4>Items</h4>
-  <% @order.items_report.each_pair do |item, value| %>
+  <% @details.each_pair do |item, data| %>
   <p>
-    Name: <%= link_to value[0], item_path(item) %>
-    Price: <%= value[1] %>
-    Count: <%= value[2] %>
-    Sub total: <%= value[3] %>
+    Name: <%= link_to item.title, item_path(item) %>
+    Price: <%= data[:price] %>
+    Count: <%= data[:quantity] %>
+    Sub total: <%= data[:subtotal] %>
   </p>
   <% end %>

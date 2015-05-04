@@ -1,4 +1,7 @@
-class Cart
+class Cart 
+
+  include ContentReport
+
   attr_reader :contents
 
   def initialize(initial_contents)
@@ -12,10 +15,6 @@ class Cart
 
   def count_all
     contents.values.sum
-  end
-
-  def to_money_string(price)
-    "#{sprintf( "$%.02f" , (price.to_f/100))}"
   end
 
   def item_sub_total(item_id, quantity)
