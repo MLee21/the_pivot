@@ -32,5 +32,4 @@ class Admin::OrdersController < Admin::BaseController
   def order_params
     params.permit(:change, :id)
   end
-
 end
