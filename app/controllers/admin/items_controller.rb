@@ -25,7 +25,7 @@ class Admin::ItemsController < Admin::BaseController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      flash[:notice] = 'Item successfully updated'
+      flash[:notice] = "Item successfully updated"
       redirect_to items_path
     else
       render :edit

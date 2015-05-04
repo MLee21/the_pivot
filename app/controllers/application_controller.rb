@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :load_cart, :howdy_name, :current_admin?, :hot_dog_categories, :logged_in?
+  helper_method :current_user, :load_cart, :howdy_name, 
+                :current_admin?, :hotdog_categories, :logged_in?
 
   before_action :load_cart
 
@@ -8,7 +9,7 @@ class ApplicationController < ActionController::Base
     @cart ||= Cart.new(session[:cart])
   end
 
-  def hot_dog_categories
+  def hotdog_categories
     Category.all
   end
 
