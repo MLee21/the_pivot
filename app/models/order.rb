@@ -20,9 +20,9 @@ class Order < ActiveRecord::Base
     to_money_string(price)
   end
 
-  def status
-    Status.find(status_id).name
-  end
+  # def status
+  #   Status.find(status_id).name
+  # end
 
   def item_count(item_id)
     items.where(id: item_id).count
@@ -54,6 +54,10 @@ class Order < ActiveRecord::Base
       report[item] << to_money_string(item_sub_total(item.id))
     end
     report
+  end
+
+  def ordered_count(name)
+    statuses.where(name: name).count
   end
 
   def self.generate_order(current_user)
