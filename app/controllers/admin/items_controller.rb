@@ -1,7 +1,7 @@
 class Admin::ItemsController < Admin::BaseController
   
   def index
-    @items = Item.all
+    @items = Item.unscoped.all
   end
 
   def new
@@ -19,14 +19,14 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def edit
-    @item = Item.find(params[:id])
+    @item = Item.unscoped.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
+    @item = Item.unscoped.find(params[:id])
     if @item.update(item_params)
       flash[:notice] = "Item successfully updated"
-      redirect_to items_path
+      redirect_to admin_items_path
     else
       render :edit
     end
