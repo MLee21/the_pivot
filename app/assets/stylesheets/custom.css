@@ -108,9 +108,11 @@
 .navbar_reg_links > a:hover {
   color: #F09030 !important;
 }
-/*.navbar-nav > li > a {
-  font-size: 16px;
-  color: white !important;
-  margin-top: 10px !important;
-}*/
+
+#navlist li {
+display: inline;
+list-style-type: none;
+padding-right: 20px;
+}
+
 
