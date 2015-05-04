@@ -7,13 +7,6 @@ class Order < ActiveRecord::Base
   has_many :order_items
   has_many :items, through: :order_items
 
-{"ordered" => 0, "paid" => 0, "cancelled" => 0, "complete" => 0}
-
-  # scope :cancelled, -> {where(status.name = "cancelled")}
-  # scope :complete,  -> {where(status: "")}
-  # scope :ordered,   -> { joins(:status).where(name: "ordered")}
-  # scope :paid,      -> {where(status: "ordered")} 
-
   include ContentReport
 
   def date
