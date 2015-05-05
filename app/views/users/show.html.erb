@@ -1,23 +1,36 @@
-<h3>Profile Information</h3>
 <div class="row">
-  <div class="col-xs-2">
-    <strong>
-      <p>Name:</p>
-      <p>Display name:</p>
-      <p>Email:</p>
-      <p>Role:</p>
-    </strong>
-  </div>
-  <div class="col-xs-10">
-    <p><%= current_user.full_name %></p>
-    <% if current_user.display? %>
-      <p><%= current_user.display_name %></p>
-    <% else %>
-      <p><em>no display name</em></p>
-    <% end %>
-    <p><%= current_user.email %></p>
-    <p><%= current_user.role %></p>
+  <div class="col-md-4 col-md-offset-4 text-center">
+    <div class="g_box">
+      <h3>Profile Information</h3>
+      <table class="table">
+        <thead>
+          <tr>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name:</td>
+            <td><%= current_user.full_name %></td>
+          <tr>
+            <td>Display Name:</td>
+            <td><% if current_user.display? %>
+              <%= current_user.display_name %>
+              <% else %>
+               <em>no display name</em>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td><%= current_user.email %></td>
+          </tr>
+          <tr>
+            <td>Role:</td>
+            <td><%= current_user.role %></td>
+          </tr>
+        </tbody>
+      </table>
+      <%= button_to "Update Info", edit_user_path(current_user), method: :get, class: "btn btn-success" %>
+    </div>
   </div>
 </div>
-<%= button_to "Update Info", edit_user_path(current_user), method: :get, class: "btn btn-success" %>
-
