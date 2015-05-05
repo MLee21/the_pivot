@@ -1,3 +1,33 @@
+body {
+  padding-top: 100px;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 100px;
+  background-color: #483048;
+  color: white;
+}
+
 .greeting {
             font-family: 'Cookie', cursive;
             font-size: 40px
@@ -44,10 +74,15 @@
 }
 
 .item_box {
-  height: 340px;
+  height: 300px;
   border: 1px solid #D6A47F;
   margin-bottom: 30px !important;
-  background-color: #EDC093;
+  background-color: rgba(237,192,147,0.65);
+  border-radius: 10px
+}
+
+.item_box a {
+  color: #000;
 }
 
 .item_box img {
