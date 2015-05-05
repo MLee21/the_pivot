@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
   def show
     @order   = Order.find(params[:id])
     @details = @order.items_report
+    owner?(@order.user_id)
   end
 
   def create

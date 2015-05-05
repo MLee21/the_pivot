@@ -23,9 +23,14 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in_user
-    unless logged_in?
-      flash[:errors] = "Please log in"
+    unless logged_in? "Please log in"
       redirect_to login_path
+    end
+  end
+
+  def owner?(user_id)
+    unless current_user.id == user_id
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
     end
   end
 
@@ -37,9 +42,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def ensure_admin_user
-    unless current_user.admin?
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
-    end
-  end
 end
