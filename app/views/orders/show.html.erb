@@ -1,7 +1,7 @@
 <h4>Purchaser</h4>
 <p>
-  <%= current_user.full_name %><br>
-  <%= current_user.email %>
+  <%= @user.full_name %><br>
+  <%= @user.email %>
 </p>
 
 <h4>Date</h4>
@@ -20,7 +20,7 @@
 
 <h4>Status</h4>
 <p>
-  <%= @order.status.name %>
+  <%= @order.status.name %> (updated: <%= @order.updated_at %>)
 </p>
 
 <h4>Items</h4>
@@ -28,7 +28,7 @@
   <p>
     Name: <%= link_to item.title, item_path(item) %>
     Price: <%= data[:price] %>
-    Count: <%= data[:quantity] %>
+    Quantity: <%= data[:quantity] %>
     Sub total: <%= data[:subtotal] %>
   </p>
   <% end %>

@@ -34,10 +34,11 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def items_report
+  def items_report(order_id)
     report = {}
-    items.each do |item|
-      quantity = item_count(item.id)
+    order_items.where(order_id: order_id).each do |order_item|
+      quantity     = order_items.count(item_id: order_item.item_id)
+      item         = Item.unscoped.find(order_item.item_id)
       report[item] = cart_parse(item, quantity)
     end
     report

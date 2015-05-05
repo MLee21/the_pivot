@@ -1,79 +1,68 @@
-<h4>Total Orders by Status</h4>
-<p>
-</p>
-
-<h4>Orders:</h4>
-<ul>
-  <li><% @orders.each do |order| %></li>
-  <li><%= link_to order.date, admin_order_path(order) %></li>
-  <% end %>
-</ul>
-
- <strong><h4>Orders by Status</h4></strong>
-  <div class="row">
-    <strong><em>
-    <div class="col-xs-1"> 
-      <p>Ordered: </p>
-      <p>Paid: </p>
-      <p>Cancelled: </p>
-      <p>Complete: </p>
-    </div>
-    </em></strong>
-    <div class="col-xs-1">
-      <p><%= @order_counts["ordered"] %></p>
-      <p><%= @order_counts["paid"] %></p>
-      <p><%= @order_counts["cancelled"] %></p>
-      <p><%= @order_counts["completed"] %></p>
-    </div>
-  </div><br>
-  
-  <strong><h4>Orders Details (<%= @list %>)</h4>
-  <div class="row right">
-    <div class="col-xs-1">
-      <em>filter: </em>
-    </div>
-    <div class="col-xs-1">
-      <%= form_for(:status, url: :admin_orders, method: :get) do |f| %>
-        <%= f.collection_select(:status_id, Status.all, :id, :name, {:prompt => "Select"}, onchange: "submit()") %>
-      <% end %>
-    </div>
+<strong><h4>All Orders by Status</h4></strong>
+<div class="row">
+  <strong><em>
+  <div class="col-xs-1"> 
+    <p>Ordered: </p>
+    <p>Paid: </p>
+    <p>Cancelled: </p>
+    <p>Complete: </p>
   </div>
- 
-  <table class="orders_table">
-    <thead>
-    <tr>
-      <th>Order ID</th>
-      <th>Date</th>
-      <th># of Items</th>
-      <th>Status</th>
-      <th>Change Status</th>
-    </tr>
-    </thead>
-    <tbody>
-      <% @orders.each do |order| %>
-        <tr>
-          <td><%= link_to "order-id #{order.id}", order_path(order) %></td>
-          <td><%= order.order_date.to_date %></td>
-          <td><%= order.items.count %></td>
-          <td><%= order.status.name %></td>
-          <td>
-            <% if order.status.name == "ordered" %>
-              <%= button_to "cancel", admin_order_path(id: order.id, change: "cancelled"), method: :put %>
-              <%= button_to "paid", admin_order_path(id: order.id, change: "paid"), method: :put %>
-            <% elsif order.status.name == "paid" %>
-              <%= button_to "cancel", admin_order_path(id: order.id, change: "cancelled"), method: :put %>
-              <%= button_to "completed", admin_order_path(id: order.id, change: "completed"), method: :put %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  </em></strong>
+  <div class="col-xs-1">
+    <p><%= @order_counts["ordered"] %></p>
+    <p><%= @order_counts["paid"] %></p>
+    <p><%= @order_counts["cancelled"] %></p>
+    <p><%= @order_counts["completed"] %></p>
+  </div>
+</div><br>
 
-  <div class="container-fluid row">
-    <% if current_user.any_orders? %>
-      <br><em>*click order-id to view order details</em>
-    <% else %>
-      <br><em>you do not have any orders placed</em>
+<strong><h4>Orders Details (<%= @list %>)</h4>
+<div class="row right">
+  <div class="col-xs-1">
+    <em>filter: </em>
+  </div>
+  <div class="col-xs-1">
+    <%= form_for(:status, url: :admin_orders, method: :get) do |f| %>
+      <%= f.collection_select(:status_id, Status.all, :id, :name, {:prompt => "Select"}, onchange: "submit()") %>
     <% end %>
   </div>
+</div>
+
+<table class="orders_table">
+  <thead>
+  <tr>
+    <th>Order ID</th>
+    <th>Date</th>
+    <th># of Items</th>
+    <th>Status</th>
+    <th>Change Status</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to "order-id #{order.id}", order_path(order) %></td>
+        <td><%= order.order_date.to_date %></td>
+        <td><%= order.items.count %></td>
+        <td><%= order.status.name %></td>
+        <td>
+          <% if order.status.name == "ordered" %>
+            <%= button_to "cancel", admin_order_path(id: order.id, change: "cancelled"), method: :put %>
+            <%= button_to "paid", admin_order_path(id: order.id, change: "paid"), method: :put %>
+          <% elsif order.status.name == "paid" %>
+            <%= button_to "cancel", admin_order_path(id: order.id, change: "cancelled"), method: :put %>
+            <%= button_to "completed", admin_order_path(id: order.id, change: "completed"), method: :put %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="container-fluid row">
+  <% if current_user.any_orders? %>
+    <br><em>*click order-id to view order details</em>
+  <% else %>
+    <br><em>you do not have any orders placed</em>
+  <% end %>
+</div>

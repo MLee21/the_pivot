@@ -13,8 +13,9 @@ class OrdersController < ApplicationController
 
   def show
     @order   = Order.find(params[:id])
-    @details = @order.items_report
-    owner?(@order.user_id)
+    @user    = User.find(@order.user_id)
+    @details = @order.items_report(@order.id)
+    current_user.admin? || owner?(@order.user_id) 
   end
 
   def create
