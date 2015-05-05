@@ -21,7 +21,7 @@ class Admin::ItemsController < Admin::BaseController
 
   def edit
     @item  = Item.unscoped.find(params[:id])
-    @price = @item.form_view_price 
+    @price = @item.to_money_decimal 
   end
 
   def update
