@@ -1,6 +1,14 @@
-<div class="user-form col-xs-3">
-  <%= form_for(@user) do |f| %>
-    <%= render partial: "fields", locals: { f: f } %>
-    <%= f.submit "Update Account", class: "btn btn-success" %>
-  <% end %>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 text-center">
+    <div class="g_box">
+      <div class="row">
+        <div class="user-form col-xs-3">
+          <%= form_for(@user) do |f| %>
+            <%= render partial: "fields", locals: { f: f } %>
+            <%= f.submit "Update Account", class: "btn btn-success" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
