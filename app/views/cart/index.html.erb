@@ -1,25 +1,40 @@
 <div class="row">
-  <div class="col-md-3">Title</div>
-  <div class="col-md-2">Price</div>
-  <div class="col-md-1">Quantity</div>
-</div>
-<hr>
-<% @contents.each_pair do |item, data| %>
-<div class="row">
-  <div class="col-md-3"><%= item.title %></div>
-  <div class="col-md-2"><%= item.to_money_string(item.price) %></div>
-  <div class="col-md-1"><%= data[:quantity] %> </div>
-  <div class="col-md-1"><%= button_to "+", cart_path(id: item.id, adjust: "increase"), method: :patch %></div>
-  <div class="col-md-1"><%= button_to "-", cart_path(id: item.id, adjust: "decrease"), method: :patch %></div>
-  <div class="col-md-1"><%= button_to "Remove", cart_path(id: item.id), class: "bt btn-danger", method: :delete %></div>
-  <div class="col-md-1"><%= data[:subtotal] %></div>
-</div>
-<% end %>
+  <div class="col-md-4 col-md-offset-4 text-center">
+    <div class="g_box">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>Sub Total</th>
+        </tr>
+        </thead>
+        <tbody>
+          <% @contents.each_pair do |item, data| %>
+            <tr>
+              <td><%= item.title %></td>
+              <td><%= item.to_money_string(item.price) %></td>
+              <td><%= data[:quantity] %></td>
+              <td><%= button_to "+", cart_path(id: item.id, adjust: "increase"), method: :patch %></td>
+              <td><%= button_to "-", cart_path(id: item.id, adjust: "decrease"), method: :patch %></td>
+              <td><%= button_to "Remove", cart_path(id: item.id), class: "bt btn-danger", method: :delete %></td>
+              <td><%= data[:subtotal] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<h3>Total: <%= @total %></h3>
+      <h3>Total: <%= @total %></h3>
 
-<% if logged_in? %>
-  <br><%= button_to "Buy them dogs!", orders_path, class: "btn btn-success" %>
-<% else %>
-  <br><%= button_to "Login to buy dogs!", login_path, class: "btn btn-success", method: :get %>
-<% end %>
+      <% if logged_in? %>
+        <br><%= button_to "Buy them dogs!", orders_path, class: "btn btn-success" %>
+      <% else %>
+        <br><%= button_to "Login to buy dogs!", login_path, class: "btn btn-success", method: :get %>
+      <% end %>
+    </div>
+  </div>
+</div>
