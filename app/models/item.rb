@@ -14,4 +14,9 @@ class Item < ActiveRecord::Base
   default_scope { where(discontinue: false) }
 
   include ContentReport
+
+  def discontinued?
+    discontinue
+  end
+
 end
