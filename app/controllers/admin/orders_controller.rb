@@ -5,8 +5,6 @@ class Admin::OrdersController < Admin::BaseController
     if params.has_key?(:status)
       @orders = Status.find(params[:status][:status_id]).orders
       @list   = Status.find(params[:status][:status_id]).name
-      binding.pry
-      
     else
       @orders = Order.all
       @list   = "all orders"
@@ -14,7 +12,9 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order   = Order.find(params[:id])
+    @user    = User.find(@order.user_id)
+    @details = @order.items_report(@order.id)
   end
 
   def update
