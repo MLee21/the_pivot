@@ -4,7 +4,12 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    owner?(params[:id].to_i)
+  end
+
   def edit
+    owner?(params[:id].to_i)
     @user = User.find(params[:id])
   end
 
