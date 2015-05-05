@@ -2,6 +2,7 @@
 
 <%= form_for([:admin, @item], html: {multipart: true}) do |f| %>
   <%= render "fields", f: f %>
+  $<%= f.number_field :price, placeholder: "price", step: 0.01 %><em> Enter in dollars and cents (e.g. 3.50)</em><br><br>
   <p>
   <%= f.label :image, "Attach an Image" %><br />
   <%= f.file_field :image %>
