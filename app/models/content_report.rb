@@ -1,7 +1,11 @@
 module ContentReport
 
   def to_money_string(price)
-    "#{sprintf( "$%.02f" , (price.to_f/100))}"
+    "$#{to_money_decimal(price)}"
+  end
+
+  def to_money_decimal(price = self.price)
+    sprintf("%.2f", price.to_d/100)
   end
 
   def item_subtotal(item, quantity)
