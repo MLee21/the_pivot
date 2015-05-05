@@ -20,10 +20,9 @@ RSpec.feature 'admin can view all orders' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit admin_orders_path
 
-      expect(page).to have_content("Total Orders by Status")
+      expect(page).to have_content("All Orders by Status")
       expect(page).to have_content("ordered")
       expect(page).to have_content("1")
-      expect(page).to have_content("Orders:")
       expect(page).to have_link("order-id")
       expect(page).to have_content("Orders by Status")
       expect(page).to have_content("Orders Details")
