@@ -1,1 +1,6 @@
-<%= render partial: "form" %>
+<div class="user-form col-xs-3">
+  <%= form_for(@user) do |f| %>
+    <%= render partial: "fields", locals: { f: f } %>
+    <%= f.submit "Create Account", class: "btn btn-success" %>
+  <% end %>
+</div>

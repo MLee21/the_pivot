@@ -11,6 +11,7 @@ class Admin::ItemsController < Admin::BaseController
   def create
     @item = Item.new(item_params)
     if @item.save
+      @item.format_price(item_params[:price])
       redirect_to items_path
     else
       flash[:error] = @item.errors.full_messages.join(', ')
@@ -19,12 +20,14 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def edit
-    @item = Item.unscoped.find(params[:id])
+    @item  = Item.unscoped.find(params[:id])
+    @price = @item.form_view_price 
   end
 
   def update
     @item = Item.unscoped.find(params[:id])
     if @item.update(item_params)
+      @item.format_price(item_params[:price])
       flash[:notice] = "Item successfully updated"
       redirect_to admin_items_path
     else
