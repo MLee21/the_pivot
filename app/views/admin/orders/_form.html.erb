@@ -1,0 +1,7 @@
+<% if order.status.name == "ordered" %>
+  <%= button_to "cancel", admin_order_path(id: order.id, change: "cancelled"), method: :put %>
+  <%= button_to "paid", admin_order_path(id: order.id, change: "paid"), method: :put %>
+<% elsif order.status.name == "paid" %>
+  <%= button_to "cancel", admin_order_path(id: order.id, change: "cancelled"), method: :put %>
+  <%= button_to "completed", admin_order_path(id: order.id, change: "completed"), method: :put %>
+<% end %>
