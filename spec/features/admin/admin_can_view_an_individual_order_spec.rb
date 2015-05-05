@@ -19,7 +19,7 @@ RSpec.feature 'admin can view a single order' do
 
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-      visit admin_order_path(order)
+      visit order_path(order)
 
       expect(page).to have_content("Date 2015-04-29")
       expect(page).to have_content("Time 21:07")
@@ -27,9 +27,10 @@ RSpec.feature 'admin can view a single order' do
       expect(page).to have_content("Rachel Warbelow")
       expect(page).to have_content("rachelw@gmail.com")
       expect(page).to have_content("rachelw@gmail.com")
-      expect(page).to have_content("Count:")
-      expect(page).to have_content("Price:")
-      expect(page).to have_content("Sub total:")
+      expect(page).to have_link("the dog that barks back")
+      expect(page).to have_content("Quantity: 1")
+      expect(page).to have_content("Price: $1.00")
+      expect(page).to have_content("Sub total: $1.0")
       expect(page).to have_content("Total $1.00")
       expect(page).to have_content("Status")
     end
@@ -51,7 +52,7 @@ RSpec.feature 'admin can view a single order' do
 
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-      visit admin_order_path(order)
+      visit order_path(order)
 
       expect(page).to have_content("Date 2015-04-29")
       expect(page).to have_content("Time 21:07")
@@ -59,11 +60,12 @@ RSpec.feature 'admin can view a single order' do
       expect(page).to have_content("Rachel Warbelow")
       expect(page).to have_content("rachelw@gmail.com")
       expect(page).to have_content("rachelw@gmail.com")
+      expect(page).to have_link("the dog that barks back")
+      expect(page).to have_link("the classic")
       expect(page).to have_content("Name:")
-      expect(page).to have_content("/items/")
-      expect(page).to have_content("Count:")
-      expect(page).to have_content("Price:")
-      expect(page).to have_content("Sub total:")
+      expect(page).to have_content("Quantity: 2")
+      expect(page).to have_content("Price: $1.00")
+      expect(page).to have_content("Sub total: $2.00")
       expect(page).to have_content("Total $2.00")
       expect(page).to have_content("Status")
     end
