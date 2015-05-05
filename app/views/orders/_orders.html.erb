@@ -25,16 +25,14 @@
       <em>filter: </em>
     </div>
     <div class="col-xs-1">
-      <%= form_for(:status, url: :orders, method: :get) do |f| %>
-        <%= f.collection_select(:status_id, Status.all, :id, :name, {:prompt => "Select"}, onchange: "submit()") %>
-      <% end %>
+      <%= render partial: "select_form" %>
     </div>
   </div>
  
   <table class="orders_table">
     <thead>
     <tr>
-      <th>Order ID</th>
+      <th>Order #</th>
       <th>Date</th>
       <th># of Items</th>
       <th>Status</th>
@@ -46,7 +44,13 @@
     <tbody>
       <% orders.each do |order| %>
         <tr>
-          <td><%= link_to "order-id #{order.id}", order_path(order) %></td>
+          <td>
+            <% if current_user.admin? %>
+              <%= link_to "#{order.id}", admin_order_path(order) %>
+            <% else %>
+              <%= link_to "#{order.id}", order_path(order) %>
+            <% end %>
+          </td>
           <td><%= order.order_date.to_date %></td>
           <td><%= order.items.count %></td>
           <td><%= order.status.name %></td>

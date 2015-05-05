@@ -1,0 +1,3 @@
+<%= form_for(:status, url: :admin_orders, method: :get) do |f| %>
+  <%= f.collection_select(:status_id, Status.all, :id, :name, {:prompt => "Select"}, onchange: "submit()") %>
+<% end %>
