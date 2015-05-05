@@ -1,0 +1,70 @@
+<div class="user-orders">
+  
+
+  <strong><h4>Orders by Status</h4></strong>
+  <div class="row">
+    <strong><em>
+    <div class="col-xs-1"> 
+      <p>Ordered: </p>
+      <p>Paid: </p>
+      <p>Cancelled: </p>
+      <p>Complete: </p>
+    </div>
+    </em></strong>
+    <div class="col-xs-1">
+      <p><%= order_counts["ordered"] %></p>
+      <p><%= order_counts["paid"] %></p>
+      <p><%= order_counts["cancelled"] %></p>
+      <p><%= order_counts["completed"] %></p>
+    </div>
+  </div><br>
+  
+  <strong><h4>Orders Details (<%= list %>)</h4>
+  <div class="row right">
+    <div class="col-xs-1">
+      <em>filter: </em>
+    </div>
+    <div class="col-xs-1">
+      <%= form_for(:status, url: :orders, method: :get) do |f| %>
+        <%= f.collection_select(:status_id, Status.all, :id, :name, {:prompt => "Select"}, onchange: "submit()") %>
+      <% end %>
+    </div>
+  </div>
+ 
+  <table class="orders_table">
+    <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Date</th>
+      <th># of Items</th>
+      <th>Status</th>
+      <% if current_user.admin? %>
+        <th>Change Status?</th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody>
+      <% orders.each do |order| %>
+        <tr>
+          <td><%= link_to "order-id #{order.id}", order_path(order) %></td>
+          <td><%= order.order_date.to_date %></td>
+          <td><%= order.items.count %></td>
+          <td><%= order.status.name %></td>
+          <% if current_user.admin? %>
+            <td>
+            <%= render partial: "admin/orders/form", locals: { order: order } %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="container-fluid row">
+    <% if orders.any? %>
+      <br><em>*click order-id to view order details</em>
+    <% else %>
+      <br><em>**you do not have any orders placed</em>
+    <% end %>
+  </div>
+</div>
