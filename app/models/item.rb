@@ -19,10 +19,6 @@ class Item < ActiveRecord::Base
     discontinue
   end
 
-  def form_view_price
-    sprintf("%.2f", price.to_d/100)
-  end
-
   def format_price(form_value)
     self.price = form_value.to_f * 100
     self.save
