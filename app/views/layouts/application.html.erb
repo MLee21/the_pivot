@@ -8,6 +8,7 @@
   <%= favicon_link_tag "hotdog.ico" %>
 </head>
 <body>
+<div id="wrap">
   <div class="nav">
   <% if current_user.admin? %>
     <%= render partial: "layouts/admin_navigation" %>
@@ -15,10 +16,6 @@
     <%= render partial: "layouts/navigation" %>
   <% end %>
   </div>
-
-  <!-- <div class="container-fluid">
-    <h2 class="greeting logo">Cowboy Kyle's <br>Hotdog Ranch</h2>
-  </div> -->
 
   <div class="container-fluid">
     <div class="flash">
@@ -31,5 +28,13 @@
   <div class="container-fluid">
     <%= yield %>
   </div>
+</div>
+
+  <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
+      </div>
+  </div>
+
 </body>
 </html>
