@@ -1,10 +1,12 @@
 class Admin::OrdersController < Admin::BaseController
- 
+
   def index
     @order_counts = current_user.orders_by_status
     if params.has_key?(:status)
       @orders = Status.find(params[:status][:status_id]).orders
       @list   = Status.find(params[:status][:status_id]).name
+      binding.pry
+      
     else
       @orders = Order.all
       @list   = "all orders"

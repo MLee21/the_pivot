@@ -6,8 +6,10 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: session_params[:email])
-
-    if user && user.authenticate(session_params[:password])
+    if user && user.authenticate(session_params[:password]) && !user.orders.nil?
+      session[:user_id] = user.id
+      redirect_to cart_index_path
+    elsif user && user.authenticate(session_params[:password])
       session[:user_id] = user.id
       redirect_to root_path
     else
