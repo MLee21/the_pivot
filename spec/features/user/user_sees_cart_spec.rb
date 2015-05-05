@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "user sees all items in cart" do
 
-  let!(:user) {User.create!(full_name: "DJ", email: "poopin@gmail.com", password: "p")}
+  let!(:user) {User.create!(full_name: "Jorge Tellez", email: "demo_jorge@jumpstartlab.com", password: "password")}
   let!(:category) {Category.create!(name: "All")}
   let!(:status) {Status.create!(name: "ordered")}
   let!(:item) {Item.create!(title: "Super Dog", description: "a hot dog", price: 200, categories: [category])}
@@ -18,14 +18,19 @@ RSpec.feature "user sees all items in cart" do
     expect(page).to have_content "$2.00"
   end
 
-  xscenario "authenticated user checks out" do
+  scenario "authenticated user checks out" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit items_path
     click_link_or_button "Add to Cart"
     click_link_or_button "View Dogs in Cart (1)"
-    click_button "Buy them dogs!"
+    expect(page).to have_content "Total: $2.00"
+    click_button "Login to buy dogs!"
+    fill_in "session[email]", with: "demo_jorge@jumpstartlab.com"
+    fill_in "session[password]", with: "password"
+    click_button "Submit"
 
-    expect(page).to have_content "Order successfully created!"
-    expect(page).to have_content "Purchaser"
+    expect(page).to have_content "Title"
+    expect(page).to have_content "Price"
+    expect(page).to have_button "Buy them dogs!"
   end
 end

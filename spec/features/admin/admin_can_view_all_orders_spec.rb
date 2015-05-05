@@ -24,13 +24,14 @@ RSpec.feature 'admin can view all orders' do
       expect(page).to have_content("ordered")
       expect(page).to have_content("1")
       expect(page).to have_content("Orders:")
-      expect(page).to have_link("2015-04-29 21:07")
-      expect(page).to have_content("List of Orders by Status")
-      expect(page).to have_content("ordered:")
-      expect(page).to have_content("paid:")
-      expect(page).to have_content("cancelled:")
-      expect(page).to have_content("completed:")
-      expect(page).to have_link("status")
+      expect(page).to have_link("order-id")
+      expect(page).to have_content("Orders by Status")
+      expect(page).to have_content("Orders Details")
+      expect(page).to have_content("Ordered:")
+      expect(page).to have_content("Paid:")
+      expect(page).to have_content("Cancelled:")
+      expect(page).to have_content("Complete:")
+      expect(page).to have_content("filter:")
     end
   end
 end
