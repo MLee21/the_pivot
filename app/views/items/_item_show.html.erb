@@ -1,0 +1,17 @@
+<div class="hotdog_item" data-categories="<%= item.category_list %>">
+  <%= image_tag(item.image, class: 'default_image') %><br>
+    <p><%= item.title %></p>
+    <p><%= item.description %></p>
+    <% if item.discontinued? %>
+      <p><em>This item has been discontinued.</em></p>
+    <% else %>
+      Price: <%= item.to_money_string(item.price) %>
+        <% unless current_user.admin? %>
+          <%= form_for(:order, url: :cart_index) do |f| %>
+            <%= f.number_field :quantity, value: 1, min: 1, max: 25, maxlength: 2 %>
+            <%= f.hidden_field :item_id, value: item.id %>
+            <%= f.submit "Add to Cart", class: "reg_btn" %>
+          <% end %>
+        <% end %>
+    <% end %>
+</div>
