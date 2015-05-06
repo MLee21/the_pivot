@@ -1,11 +1,17 @@
-<h3 class="greeting">Create a New Dog</h3>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 text-center">
+    <div class="g_box">
+      <h3 class="greeting">Create a New Dog</h3>
 
-<%= form_for([:admin, @item], html: {multipart: true}) do |f| %>
-  <%= render partial: "fields", locals: { f: f, item: @item, price: @price } %>
-  <br><br>
-  <p>
-  <%= f.label :image, "Attach an Image" %><br />
-  <%= f.file_field :image %>
-  </p>
-  <br><%= f.submit "Create dog", class: "btn btn-success" %>
-<% end %>
+      <%= form_for([:admin, @item], html: {multipart: true}) do |f| %>
+        <%= render partial: "fields", locals: { f: f, item: @item, price: @price } %>
+        <br><br>
+        <p>
+        <%= f.label :image, "Attach an Image" %><br />
+        <%= f.file_field :image %>
+        </p>
+        <br><%= f.submit "Create dog", class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>
