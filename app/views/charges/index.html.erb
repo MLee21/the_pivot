@@ -1,12 +1,18 @@
-<h2>Your order will be ready for pickup in <%= @prep_time %>.</h2>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 text-center">
+    <div class="g_box">
+      <h2>Your order will be ready for pickup in <%= @prep_time %>.</h2>
 
-<%= form_tag charges_path do %>
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-email="<%= current_user.email %>"
-          data-amount="<%= @in_cents %>">
-  </script>
-<% end %>
-<%= link_to "No thanks, I'll pay at pickup.", root_path %>
+      <%= form_tag charges_path do %>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-email="<%= current_user.email %>"
+                data-amount="<%= @in_cents %>">
+        </script>
+      <% end %>
+      <%= link_to "No thanks, I'll pay at pickup.", root_path %>
+    </div>
+  </div>
+</div>
 
 <%= render partial: "orders/order", locals: { order: @order, details: @details, user: @user } %>
