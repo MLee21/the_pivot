@@ -37,7 +37,7 @@ class Order < ActiveRecord::Base
   def items_report(order_id)
     report = {}
     order_items.where(order_id: order_id).each do |order_item|
-      quantity     = order_items.count(item_id: order_item.item_id)
+      quantity     = order_items.where(item_id: order_item.item_id).count
       item         = Item.unscoped.find(order_item.item_id)
       report[item] = cart_parse(item, quantity)
     end
