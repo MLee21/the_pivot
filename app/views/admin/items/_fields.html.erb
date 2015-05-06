@@ -2,7 +2,10 @@
 <%= f.text_field :title, placeholder: "hot dog title" %><br><br>
 <%= f.label :description %>
 <%= f.text_field :description, placeholder: "description" %><br><br>
+<%= f.label :prep_time %>
+<%= f.text_field :prep_time, placeholder: "12" %><br><br>
 <%= f.label :price %>
+$<%= f.number_field :price, value: price,placeholder: "0.00", step: 0.01 %><em> Enter in dollars and cents (e.g. 3.50)</em>
 <div class="checkbox-list">
   <%= f.collection_check_boxes(:category_ids, Category.all.order(:name), :id, :name) %>
 </div>

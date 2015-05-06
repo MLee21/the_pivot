@@ -1,10 +1,10 @@
 <h3 class="greeting">Update This Dog</h3>
 
 <%= form_for([:admin, @item], html: {multipart: true}) do |f| %>
-  <%= render partial: "fields", locals: { f: f } %>
-  $<%= f.number_field :price, value: @price, step: 0.01 %><em> Enter in dollars and cents (e.g. 3.50)</em><br><br>
+  <%= render partial: "fields", locals: { f: f, item: @item, price: @price } %>
+  <br><br>
   <p>
-  <%= f.label :image, "Attach a new image" %><br />
+  <%= f.label :image, "Change image" %><br />
   <%= f.file_field :image %>
   </p>
   <p>

@@ -19,8 +19,18 @@ class Item < ActiveRecord::Base
     discontinue
   end
 
-  def format_price(form_value)
-    self.price = form_value.to_f * 100
+  def format_price(form_price_value)
+    self.price = form_price_value.to_f * 100
+  end
+
+  def add_all_category
+    category_all = Category.find_by(name: "All Dogs")
+    self.categories << category_all unless self.categories.include?(category_all)
+  end
+
+  def adjust_information(form_price_value)
+    self.format_price(form_price_value)
+    self.add_all_category 
     self.save
   end
 
