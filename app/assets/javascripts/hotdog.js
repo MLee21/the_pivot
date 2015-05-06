@@ -6,7 +6,7 @@ $(document).ready(function(){
     var currentCategory = $('#category_id').val();      
     $items.each(function (index, item) {
       $item = $(item);
-      if (check(currentCategory, $item.data('categories'))) {
+      if (checkForDogs(currentCategory, $item.data('categories'))) {
         $item.show();
       } else {
         $item.hide();
@@ -14,7 +14,7 @@ $(document).ready(function(){
     });
   });
 
-  function check(name, array) {
+  function checkForDogs(name, array) {
     for (i = 0; i < array.length; i++) {
       if (array[i] === name) {
         return true
