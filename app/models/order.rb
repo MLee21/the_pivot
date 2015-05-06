@@ -18,8 +18,11 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    price = items.reduce(0) { |sum,item| sum += item.price }
-    to_money_string(price)
+    to_money_string(total_in_cents)
+  end
+
+  def total_in_cents
+    items.reduce(0) { |sum,item| sum += item.price }
   end
 
   def item_count(item_id)
@@ -42,6 +45,12 @@ class Order < ActiveRecord::Base
       report[item] = cart_parse(item, quantity)
     end
     report
+  end
+
+  def set_status_to_paid
+    status_id       = Status.paid_id
+    self.status_id = status_id
+    self.save
   end
 
   def self.generate_order(current_user)

@@ -1,0 +1,10 @@
+<%= form_tag charges_path do %>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-email="<%= current_user.email %>"
+          data-amount="<%= @in_cents %>">
+  </script>
+<% end %>
+
+<%= render partial: "orders/order", locals: { order: @order, details: @details, user: @user } %>

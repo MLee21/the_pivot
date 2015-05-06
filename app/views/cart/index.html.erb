@@ -31,7 +31,7 @@
       <h3>Total: <%= @total %></h3>
 
       <% if logged_in? %>
-        <br><%= button_to "Buy them dogs!", orders_path, class: "btn btn-success" %>
+        <br><%= button_to "Complete Order", orders_path, class: "btn btn-success" %>
       <% else %>
         <br><%= button_to "Login to buy dogs!", login_path, class: "btn btn-success", method: :get %>
       <% end %>
