@@ -10,10 +10,10 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def create
-    @item = Item.new(item_params)
-    if @item.save
-      @item.adjust_information(item_params[:price])
-      redirect_to items_path
+    item = Item.new(item_params)
+    item.adjust_information(item_params[:price])
+    if item.save
+      redirect_to admin_items_path
     else
       flash[:error] = @item.errors.full_messages.join(', ')
       render :new
