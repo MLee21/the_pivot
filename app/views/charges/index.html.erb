@@ -1,3 +1,5 @@
+<h2>Your order will be ready for pickup in <%= @prep_time %>.</h2>
+
 <%= form_tag charges_path do %>
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
@@ -5,5 +7,6 @@
           data-amount="<%= @in_cents %>">
   </script>
 <% end %>
+<%= link_to "No thanks, I'll pay at pickup.", root_path %>
 
 <%= render partial: "orders/order", locals: { order: @order, details: @details, user: @user } %>

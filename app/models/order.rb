@@ -54,12 +54,40 @@ class Order < ActiveRecord::Base
   end
 
   def prep_time
-
+    items = self.items
+    raw_time = bulk_order_delay(items) + paid_order_delay + item_prep_delay(items)
+    format_prep_time(raw_time).join
   end
 
   def self.generate_order(current_user)
     status = Status.find_by(name: "ordered")     
     new(order_date: Time.now, user_id: current_user.id, status_id: status.id )
+  end
+
+  private
+
+  def bulk_order_delay(items)
+    time = ((items.size/6) - 1) * 10
+    return time if time > 0
+    0
+  end
+
+  def paid_order_delay
+    Order.where(status_id: Status.paid_id).count * 4
+  end
+
+  def item_prep_delay(items)
+    items.reduce(0) do |sum, item|
+      sum += item.prep_time
+    end
+  end
+
+  def format_prep_time(raw_time)
+    time_string = []
+    hours   = raw_time / 60
+    minutes = raw_time % 60
+    time_string << "#{hours} hour(s) " if hours > 0
+    time_string << "#{minutes} minutes" 
   end
 
 end
