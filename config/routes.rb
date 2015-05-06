@@ -11,12 +11,15 @@ Rails.application.routes.draw do
   resources :orders
   resources :users
   resources :cart
+  resources :charges
 
-  get           "/home", to: "home#get"
-  get          "/login", to: "sessions#new"
-  post         "/login", to: "sessions#create"
-  delete      "/logout", to: "sessions#destroy"
-  post  "admin/options", to: "admin/options#route"
+  # get            "/payment", to: "orders#payment"
+  # get      "/pay_at_pickup", to: "orders#pay_at_pickup"
+  get               "/home", to: "home#get"
+  get              "/login", to: "sessions#new"
+  post             "/login", to: "sessions#create"
+  delete          "/logout", to: "sessions#destroy"
+  post      "admin/options", to: "admin/options#route"
 
   root "home#new" 
 end
