@@ -22,17 +22,9 @@
         <li class="nav-dropdown">
           <%= form_for(:category, url: :items, method: :get) do |f| %>
             <strong><em><%= f.label "Search: " %></em></strong>
-            <%= f.collection_select(:id, Category.all.order(:name), :id, :name, {:prompt => "Dog Breeds"}, onchange: "submit()") %>
-          <% end %>
+              <%= f.collection_select(:id, Category.all.order(:name), :name, :name) %>
+              <% end %>
         </li>
-        <li class="nav-dropdown", id='admin_options'>
-        <% if current_user.admin? %>
-          <%= form_for(:option, url: :admin_options) do |f| %>
-            <strong><em><%= f.label "Select: " %></em></strong>
-            <%= f.select :option_type, { "Admin Options" => "", "Categories" => "categories", "Items" => "items", "Orders" => "orders" }, {}, :onchange => "submit()" %>
-          <% end %>
-        <% end %>
-      </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><% if logged_in? %>
