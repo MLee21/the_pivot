@@ -6,6 +6,7 @@ class ChargesController < ApplicationController
     @in_cents    = @order.total_in_cents.to_s
     @user        = User.find(@order.user_id)
     @details     = @order.items_report(@order.id)
+    @prep_time   = session[:prep_time]
     owner?(@order.user_id) 
   end
 
