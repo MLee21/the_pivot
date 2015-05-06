@@ -25,7 +25,6 @@ class OrdersController < ApplicationController
     if order.save
       flash[:notice] = "Order successfully created!"
       session[:cart] = nil
-      # redirect_to charge_path(order)
       redirect_to charges_path
     else
       flash[:errors] = order.errors.full_messages.join(", ")

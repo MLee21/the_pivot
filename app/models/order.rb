@@ -53,6 +53,10 @@ class Order < ActiveRecord::Base
     self.save
   end
 
+  def prep_time
+
+  end
+
   def self.generate_order(current_user)
     status = Status.find_by(name: "ordered")     
     new(order_date: Time.now, user_id: current_user.id, status_id: status.id )

@@ -1,3 +1,5 @@
+<%= button_to "Create New Dog", new_admin_item_path, method: :get %>
+
 <% @items.each do |item| %>
   <%= render 'admin_item', item: item %>
 <% end %>
