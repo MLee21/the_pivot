@@ -1,19 +1,21 @@
-<div class="col-lg-3 col-md-4 col-sm-6">
-  <div class="item_box">
-    <%= image_tag(item.image, class: 'default_image') %><br>
-    <ul>
-      <li><%= link_to(item.title, item) %></li>
-      <% if item.discontinued? %>
-        <li><em>This item has been discontinued.</em></li>
-      <% else %>
-        <li>Price: <%= item.to_money_string(item.price) %></li>
-          <%= form_for(:order, url: :cart_index) do |f| %>
-            <%= f.number_field :quantity, value: 1, min: 1, max: 25, maxlength: 2 %>
-            <%= f.hidden_field :item_id, value: item.id %>
-            <%= f.submit "Add to Cart", class: "reg_btn" %>
-          <% end %>
-      <% end %>
-    </ul>
+<div class="hotdog_item" data-categories="<%= item.category_list %>">
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="item_box">
+      <%= image_tag(item.image, class: 'default_image') %><br>
+      <ul>
+        <li><%= link_to(item.title, item) %></li>
+        <% if item.discontinued? %>
+          <li><em>This item has been discontinued.</em></li>
+        <% else %>
+          <li>Price: <%= item.to_money_string(item.price) %></li>
+            <%= form_for(:order, url: :cart_index) do |f| %>
+              <%= f.number_field :quantity, value: 1, min: 1, max: 25, maxlength: 2 %>
+              <%= f.hidden_field :item_id, value: item.id %>
+              <%= f.submit "Add to Cart", class: "reg_btn" %>
+            <% end %>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
 

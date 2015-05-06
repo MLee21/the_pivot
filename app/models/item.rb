@@ -28,6 +28,10 @@ class Item < ActiveRecord::Base
     self.categories << category_all unless self.categories.include?(category_all)
   end
 
+  def category_list
+    self.categories.map { |category| category.name }
+  end
+
   def adjust_information(form_price_value)
     self.format_price(form_price_value)
     self.add_all_category 
