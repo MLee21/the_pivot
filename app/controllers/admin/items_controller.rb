@@ -26,9 +26,9 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def update
-    @item = Item.unscoped.find(params[:id])
-    if @item.update(item_params)
-      @item.format_price(item_params[:price])
+    item = Item.unscoped.find(params[:id])
+    if item.update(item_params)
+      item.format_price(item_params[:price])
       flash[:notice] = "Item successfully updated"
       redirect_to admin_items_path
     else
