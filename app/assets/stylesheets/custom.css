@@ -1,6 +1,45 @@
-body {
-  padding-top: 100px;
+/* General Styles
+-------------------------------------------------- */
+.flash {
+  font-size: 30px;
+  color: white;
 }
+
+.greeting {
+            font-family: 'Lobster', cursive;
+            font-size: 40px;
+            color: white;
+          }
+
+.g_box {
+  border: 1px solid #D6A47F;
+  background-color: rgba(237,192,147,0.65);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.g_box a {
+  color: #483048;
+}
+
+.g_box a:hover {
+  color: #C06030;
+  text-decoration: none;
+}
+
+.logo {
+        font-size: 45px;
+      }
+
+
+.user-form {
+              margin-top: 20px;
+            }
+
+.user-orders {
+                text-align: left;
+             }
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -8,11 +47,10 @@ body {
 html,
 body {
   height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
 }
 
-.flash {
-  color: red;
+body {
+  padding-top: 100px;
 }
 
 /* Wrapper for page content to push down footer */
@@ -32,39 +70,13 @@ body {
   color: white;
 }
 
-.greeting {
-            font-family: 'Cookie', cursive;
-            font-size: 40px
-          }
+.footer_text {
+  font-size: 14px;
+  color: #C2CBCE;
+}
 
-.logo {
-        font-size: 45px;
-      }
-
-.btn {
-        margin-top: 20px;
-     }
-
-.user-form {
-              margin-top: 20px;
-            }
-
-.user-orders {
-                text-align: left;
-             }
-
-.nav-dropdown {
-                margin-top: 25px;
-                text-align: right;
-              }
-
-.right {
-          text-align: right;
-       }
-
-.left  {
-          text-align: left;
-       }
+/* Checkbox Styles
+-------------------------------------------------- */
 
 .checkbox-list input[type="checkbox"] {
   display: inline-block;
@@ -77,6 +89,8 @@ body {
   width: 80%;
 }
 
+/* Item Box Sytles
+-------------------------------------------------- */
 .item_box {
   height: 300px;
   border: 1px solid #D6A47F;
@@ -91,20 +105,15 @@ body {
 
 .item_box img {
   margin-top: 20px;
+  border-radius: 10px;
 }
 
 .item_box ul {
   list-style: none;
 }
 
-.g_box {
-  border: 1px solid #D6A47F;
-  background-color: rgba(237,192,147,0.65);
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
+/* Button Styles
+-------------------------------------------------- */
 .btn {
   -webkit-border-radius: 16 !important;
   -moz-border-radius: 16 !important;
@@ -118,7 +127,7 @@ body {
   height: 40px !important;
   border-color: #C06030;
   margin-bottom: 10px !important;
-  margin-bottom: 5px !important;
+  margin-top: 20px;
 }
 
 .btn:hover {
@@ -147,6 +156,9 @@ body {
   text-decoration: none !important;
 }
 
+/* Navigation Sytles
+-------------------------------------------------- */
+
 .navbar_reg_links > a {
   font-size: 16px;
   color: white !important;
@@ -163,4 +175,7 @@ list-style-type: none;
 padding-right: 20px;
 }
 
-
+.nav-dropdown {
+                margin-top: 25px;
+                text-align: right;
+              }
