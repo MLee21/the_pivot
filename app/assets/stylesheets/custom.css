@@ -1,4 +1,4 @@
-/* General Styles
+ General Styles
 -------------------------------------------------- */
 .flash {
   font-size: 30px;
@@ -73,10 +73,15 @@ body {
 .footer_text {
   font-size: 14px;
   color: #C2CBCE;
+  text-align: center;
 }
 
 /* Checkbox Styles
 -------------------------------------------------- */
+
+.checkbox-list {
+  margin-top: 10px;
+}
 
 .checkbox-list input[type="checkbox"] {
   display: inline-block;
@@ -156,6 +161,11 @@ body {
   text-decoration: none !important;
 }
 
+.btn-change-status {
+  margin: 2px;
+  color: black;
+}
+
 /* Navigation Sytles
 -------------------------------------------------- */
 
@@ -179,3 +189,9 @@ padding-right: 20px;
                 margin-top: 25px;
                 text-align: right;
               }
+
+/* Table styles
+-------------------------------------------------- */
+.table .left {
+  text-align: right;
+}
