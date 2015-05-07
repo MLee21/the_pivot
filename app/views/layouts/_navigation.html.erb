@@ -22,7 +22,7 @@
         <li class="nav-dropdown">
           <%= form_for(:category, url: :items, method: :get) do |f| %>
             <strong><em><%= f.label "Search: " %></em></strong>
-              <%= f.collection_select(:id, Category.all.order(:name), :name, :name) %>
+              <%= f.collection_select(:id, Category.all.order(:name), :name, :name, onchange: "submit()") %>
               <% end %>
         </li>
       </ul>
