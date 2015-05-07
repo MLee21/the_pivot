@@ -1,7 +1,7 @@
 <% if order.status.name == "ordered" %>
-  <%= button_to "cancel", admin_order_path(id: order.id, change: "cancelled"), method: :put %>
-  <%= button_to "paid", admin_order_path(id: order.id, change: "paid"), method: :put %>
+  <%= button_to "cancel", admin_order_path(id: order.id, change: "cancelled"), class: "btn-change-status btn-danger btn-xs btn-block", method: :put %>
+  <%= button_to "paid", admin_order_path(id: order.id, change: "paid"), class: "btn-change-status btn-success btn-xs btn-block", method: :put %>
 <% elsif order.status.name == "paid" %>
-  <%= button_to "cancel", admin_order_path(id: order.id, change: "cancelled"), method: :put %>
-  <%= button_to "completed", admin_order_path(id: order.id, change: "completed"), method: :put %>
+  <%= button_to "cancel", admin_order_path(id: order.id, change: "cancelled"), class: "btn-change-status btn-danger btn-xs btn-block", method: :put %>
+  <%= button_to "completed", admin_order_path(id: order.id, change: "completed"), class: "btn-change-status btn-warning btn-xs btn-block", method: :put %>
 <% end %>
