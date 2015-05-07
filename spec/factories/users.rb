@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :user, class: User do
+  factory :user do
     full_name     'MyName'
     email         'example@email.com'
     role          0

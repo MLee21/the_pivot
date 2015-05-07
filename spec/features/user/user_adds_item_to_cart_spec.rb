@@ -2,16 +2,14 @@ require 'rails_helper'
 
 RSpec.feature "user adds items to cart" do
 
-  let!(:user) {User.create(full_name: "DJ", email: "poopin@gmail.com", password: "p")}
-
-  let!(:category) {Category.create(name: "All")}
-
-  let!(:item) {Item.create(title: "Super Dog", description: "a hot dog", price: 200, categories: [category])}
+  let!(:user)     { create(:user) }
+  let!(:category) { create(:category) }
+  let!(:item)     { create(:item) }
 
   scenario "as a guest user from the items index" do
     visit items_path
 
-    expect(page).to have_content("Super Dog")
+    expect(page).to have_content("Hotdog")
     click_link_or_button "Add to Cart"
     expect(page).to have_content("View Dogs in Cart (1)")
 
@@ -26,8 +24,8 @@ RSpec.feature "user adds items to cart" do
     
     visit items_path
 
-    expect(page).to have_content("Howdy, DJ")    
-    expect(page).to have_content("Super Dog")
+    expect(page).to have_content("Howdy, kulio!")    
+    expect(page).to have_content("Hotdog")
 
     click_link_or_button "Add to Cart"
 
@@ -45,13 +43,12 @@ RSpec.feature "user adds items to cart" do
     
     visit item_path(item)
 
-    expect(page).to have_content("Super Dog")
+    expect(page).to have_content("Hotdog")
 
     fill_in "order[quantity]", with: "3"
     click_link_or_button "Add to Cart"
 
     expect(page).to have_content("View Dogs in Cart (3)")
   end
-
 
 end
