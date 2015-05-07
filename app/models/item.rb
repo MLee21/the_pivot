@@ -21,6 +21,7 @@ class Item < ActiveRecord::Base
 
   def format_price(form_price_value)
     self.price = form_price_value.to_f * 100
+    self.save
   end
 
   def add_all_category

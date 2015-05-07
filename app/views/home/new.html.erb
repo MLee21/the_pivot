@@ -1,5 +1,9 @@
 <div class="hero-unit">
 </div>
-  <h1 class="hero-h1">Welcome to<br> Cowboy Kyle's Hotdog Ranch! <br> <%= link_to "Checkout our dogs!", items_path %> </h1>
-
+<h1 class="hero-h1">Welcome to<br> Cowboy Kyle's Hotdog Ranch! <br> 
+<% if current_user.admin? %>
+  <%= link_to "Manage those dogs!", admin_items_path %>  
+<% else %>  
+  <%= link_to "Checkout our dogs!", items_path %> </h1>
+<% end %>
 
