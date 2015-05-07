@@ -1,8 +1,13 @@
-<h3 class="greeting">Edit Category</h3>
-<%= form_for(@category, url: admin_category_path) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, placeholder: :name %>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 text-center">
+    <div class="g_box">
+      <h3 class="greeting">Edit Category</h3>
+      <%= form_for(@category, url: admin_category_path) do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name, placeholder: :name %>
 
-  <%= f.submit "Update" %>
-
-<% end %>
+        <%= f.submit "Update" %>
+      <% end %>
+    </div>
+  </div>
+</div>
