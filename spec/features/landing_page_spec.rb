@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "landing page" do
 
-  let!(:category1) { create(:category) }
-  let!(:user) { create(:user) }
+  let!(:category) { create(:category) }
+  let!(:user)     { create(:user) }
 
 
   scenario "any user visits the homepage" do
@@ -13,7 +13,6 @@ RSpec.feature "landing page" do
     expect(page).to have_content("Cowboy Kyle's Hotdog Ranch")
     expect(page).to have_link("View Dogs in Cart")
     expect(page).to have_button("Login")
-    expect(page).to have_content("View Dogs in Cart")
     expect(page).to have_select("category_id")
   end
 end
