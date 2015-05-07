@@ -6,10 +6,8 @@
       <%= form_for([:admin, @item], html: {multipart: true}) do |f| %>
         <%= render partial: "fields", locals: { f: f, item: @item, price: @price } %>
         <br><br>
-        <p>
-        <%= f.label :image, "Attach an Image" %><br />
+        <%= f.label :image, "Attach an Image" %>
         <%= f.file_field :image %>
-        </p>
         <br><%= f.submit "Create dog", class: "btn btn-success" %>
       <% end %>
     </div>
