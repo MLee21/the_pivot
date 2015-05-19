@@ -14,12 +14,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="navbar_reg_links"><%= link_to "Cowboy Kyle's Hotdog Ranch", root_path %></li>
+        <li class="navbar_reg_links"><%= link_to "Cowboy Kyle's Farmers Market", root_path %></li>
         <% unless current_user.name_to_display == "Guest" %>
             <li class="navbar_reg_links"><%= link_to "Profile", user_path(current_user) %></li>
             <li class="navbar_reg_links"><%= link_to "Orders", orders_path %></li>
         <% end %>
-        <li class="navbar_reg_links"><%= link_to "Browse the Dogs", items_path %></li>
+        <li class="navbar_reg_links"><%= link_to "Browse the Items", items_path %></li>
         <li class="nav-dropdown">
           <%= form_for(:category, url: :items, method: :get) do |f| %>
             <strong><em><%= f.label "Search: " %></em></strong>
