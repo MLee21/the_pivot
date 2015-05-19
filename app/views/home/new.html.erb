@@ -1,9 +1,30 @@
-<div class="hero-unit">
+<!-- <div class="hero-unit">
 </div>
-<h1 class="hero-h1">Welcome to<br> Cowboy Kyle's Hotdog Ranch! <br> 
+<h1 class="hero-h1">Welcome to<br> Cowboy Kyle's Farmer's Market! <br>
 <% if current_user.admin? %>
-  <%= link_to "Manage those dogs!", admin_items_path %>  
-<% else %>  
-  <%= link_to "Checkout our dogs!", items_path %> </h1>
-<% end %>
+  <%= link_to "Admin Portal", admin_items_path %>
+<% else %>
+  <%= link_to "Items", items_path %> </h1>
+<% end %> -->
+<div class="inner-container">
+  <div class="row">
+    <div class="col-md-5">
+      <%= image_tag("veg.jpg") %>
+    </div><!-- col-md-4-->
+    <div class="col-md-7">
+      <%= image_tag("logo.png", :class => "veg")  %>
+    </div><!-- col-md-8-->
+  </div><!-- row -->
 
+  <div class="row">
+    <div class="col-md-3">
+      <p>column 3</p>
+    </div><!-- col-md-3-->
+    <div class="col-md-6">
+      <p>column 6</p>
+    </div><!-- col-md-6-->
+    <div class="col-md-3">
+      <p>column 3</p>
+    </div><!-- col-md-3-->
+  </div><!-- row -->
+</div><!--inner-container-->
