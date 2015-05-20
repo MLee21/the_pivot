@@ -1,0 +1,5 @@
+<h1>Welcome to <%= current_vendor.name %></h1>
+<% @items.each do |item| %>
+  <%= link_to item.title, vendor_item_path(id: item.id) %>
+  <%= item.description %>
+<% end %>

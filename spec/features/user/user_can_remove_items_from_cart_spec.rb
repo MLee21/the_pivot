@@ -13,7 +13,7 @@ RSpec.feature 'user removes items from cart' do
 
     expect(page).to have_content("Howdy, kulio!")
     expect(page).to have_content("Hotdog")
-    click_link_or_button "Add to Cart"
+    click_link_or_button "Add to Basket"
     click_link_or_button "View Dogs in Cart (1)"
     expect(current_path).to eq(cart_index_path)
 

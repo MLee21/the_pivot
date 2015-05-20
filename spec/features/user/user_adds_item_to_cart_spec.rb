@@ -18,14 +18,14 @@ RSpec.feature "user adds items to cart" do
     click_link "Vendors"
     click_link "Peter's Produce"
     expect(current_route).to eq(vendor_path(vendor))
-    click_link_or_button "Add to Cart"
+    click_link_or_button "Add to Basket"
 
     expect(page).to have_content("View Items in Cart (1)")
 
     click_link "Vendors"
     click_link "Pretzel Hut"
     expect(current_route).to eq(vendor_path(vendor))
-    click_link_or_button "Add to Cart"
+    click_link_or_button "Add to Basket"
 
     expect(page).to have_content("View Items in Cart (2)")
   end
@@ -37,7 +37,7 @@ RSpec.feature "user adds items to cart" do
     expect(page).to have_content("Squash")
 
     fill_in "order[quantity]", with: "3"
-    click_link_or_button "Add to Cart"
+    click_link_or_button "Add to Basket"
 
     expect(page).to have_content("View Items in Cart (3)")
   end
