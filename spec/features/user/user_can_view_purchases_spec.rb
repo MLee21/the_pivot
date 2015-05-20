@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.feature 'user can view thier orders' do
+RSpec.feature 'user can view thier purchases' do
 
-  let!(:user) { create(:user) }
-  let!(:order) { create(:order) }
-  let!(:status) { create(:status) }
+  let(:user) { create(:user) }
+  let(:order) { create(:order) }
+  let(:status) { create(:status) }
 
   before(:each) do
     order.status_id = status.id
@@ -13,9 +13,9 @@ RSpec.feature 'user can view thier orders' do
 
   scenario "when authenticated user is logged in" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-    visit root_path
+    visit user
     expect(page).to have_content "Howdy, kulio!"
-    click_link "Orders"
+    expect(page).to have_content "Purchases:"
 
     expect(page).to have_content "Orders by Status"
     expect(page).to have_content "Ordered:"
@@ -31,5 +31,12 @@ RSpec.feature 'user can view thier orders' do
     expect(page).to have_content "2015-10-04"
     expect(page).to have_content "2"
     expect(page).to have_content "ordered"
+
+    click_link "Order # __"
+    expect(page).to have_content "Order Details"
+    expect(page).to have_content "Order #"
+    expect(page).to have_content "Date"
+    expect(page).to have_content "# of Items"
+    expect(page).to have_content "Status"
   end
 end
