@@ -16,7 +16,7 @@
         <tbody>
           <% @contents.each_pair do |item, data| %>
             <tr>
-              <td><%= link_to(item.title, item_path(item))%></td>
+              <td><%= link_to(item.title, vendor_item_path(vendor: item.vendor.slug, id: item.id))%></td>
               <td><%= item.to_money_string(item.price) %></td>
               <td><%= data[:quantity] %></td>
               <td><%= button_to "+", cart_path(id: item.id, adjust: "increase"), method: :patch %></td>
@@ -34,7 +34,7 @@
         <% if logged_in? %>
           <br><%= button_to "Complete Order", orders_path, class: "btn btn-success" %>
         <% else %>
-          <br><%= button_to "Login to buy dogs!", login_path, class: "btn btn-success", method: :get %>
+          <br><%= button_to "Login to Checkout!", login_path, class: "btn btn-success", method: :get %>
         <% end %>
       <% end %>
     </div>

@@ -28,5 +28,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
   # gem 'emoji-rspec', git: "git@github.com:carhartl/emoji-rspec/tree/rspec-3"
-end 
+end

@@ -4,19 +4,19 @@ require "rails_helper"
 # When I am ready to make my purchases, I can checkout.
 
 feature "a registered customer can make purchases" do
-  let!(:user) User.create(full_name:"Tracy", email: "tslice@gmail.com", password:"password", password_confirmation: "password")
+  let!(:user) {User.create(full_name:"Tracy", email: "tslice@gmail.com", password:"password", password_confirmation: "password")}
   let!(:vendor) {create(:vendor)}
   let!(:item) {create(:item)}
 
-  senario "registered customer can login in add items to cart and complete purchase" do
+  scenario "registered customer can login in add items to cart and complete purchase" do
     # ? allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     # visit login page
     visit root_path
     # click login
     click_link("Login")
     # fill in login information
-    fill_in "session[email]", with "tslice@gmail.com"
-    fill_in "session[password]", with "password"
+    fill_in "session[email]", with: "tslice@gmail.com"
+    fill_in "session[password]", with: "password"
     # redirected to vendor directory
     expect(current_path).to eq vendors_path
     # confirm vendor exists
@@ -27,9 +27,9 @@ feature "a registered customer can make purchases" do
     expect(current_path).to eq vendor_items_path(vendor)
     # confirm item exist
     expect(page).to have_content("Granny Smith Apple")
-    # click add to cart
+    # click Add to Basket
     within(".item-class:first") do
-      click_link("Add to Cart")
+      click_link("Add to Basket")
     end
     expect(page).to have_content("View Dogs in Cart (1)")
     # click cart
