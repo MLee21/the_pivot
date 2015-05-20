@@ -10,13 +10,13 @@ class CartController < ApplicationController
     quantity = params[:order][:quantity]
     @cart.add_item(item.id, quantity)
     session[:cart] = @cart.contents
-    redirect_to items_path
+    redirect_to vendor_items_path(vendor: params[:order][:vendor])
   end
 
   def update
     item_id = adjust_cart_params[:id]
     session[:cart][item_id] += 1 if adjust_cart_params[:adjust] == "increase"
-    session[:cart][item_id] -= 1 if adjust_cart_params[:adjust] == "decrease"  
+    session[:cart][item_id] -= 1 if adjust_cart_params[:adjust] == "decrease"
     redirect_to cart_index_path
   end
 

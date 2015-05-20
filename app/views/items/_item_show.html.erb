@@ -10,7 +10,7 @@
           <%= form_for(:order, url: :cart_index) do |f| %>
             <%= f.number_field :quantity, value: 1, min: 1, max: 25, maxlength: 2 %>
             <%= f.hidden_field :item_id, value: item.id %>
-            <%= f.submit "Add to Cart", class: "reg_btn" %>
+            <%= f.submit "Add to Basket", class: "reg_btn" %>
           <% end %>
         <% end %>
     <% end %>

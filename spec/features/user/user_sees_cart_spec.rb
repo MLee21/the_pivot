@@ -10,7 +10,7 @@ RSpec.feature "user sees all items in cart" do
   scenario "guest user sees one item in cart" do
     visit items_path
 
-    click_link_or_button "Add to Cart"
+    click_link_or_button "Add to Basket"
     click_link_or_button "View Dogs in Cart (1)"
 
     expect(page).to have_content "Hotdog"
@@ -23,7 +23,7 @@ RSpec.feature "user sees all items in cart" do
     
     visit items_path
     
-    click_link_or_button "Add to Cart"
+    click_link_or_button "Add to Basket"
     click_link_or_button "View Dogs in Cart (1)"
     
     expect(page).to have_content "Total: $2.00"
