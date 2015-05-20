@@ -1,4 +1,5 @@
 class Item < ActiveRecord::Base
+  belongs_to :vendor
   validates :title, :description, :price, presence: true
 
   validates :title, uniqueness: true
@@ -35,7 +36,7 @@ class Item < ActiveRecord::Base
 
   def adjust_information(form_price_value)
     self.format_price(form_price_value)
-    self.add_all_category 
+    self.add_all_category
     self.save
   end
 

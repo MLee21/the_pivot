@@ -4,7 +4,7 @@
 <% if current_user.admin? %>
   <%= link_to "Admin Portal", admin_items_path %>
 <% else %>
-  <%= link_to "Items", vendor_items_path(vendor: vendor.slug) %> </h1>
+  <%= link_to "Vendors", vendors_path %> </h1>
 <% end %>
 
 <div class="inner-container">
