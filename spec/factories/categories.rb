@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :category do
-    name "spicy"
+    name "organic"
   end
 
 end
