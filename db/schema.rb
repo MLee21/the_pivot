@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507152933) do
+ActiveRecord::Schema.define(version: 20150520002359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,10 @@ ActiveRecord::Schema.define(version: 20150507152933) do
     t.datetime "image_updated_at"
     t.boolean  "discontinue",        default: false
     t.integer  "prep_time",          default: 12
+    t.integer  "vendor_id"
   end
+
+  add_index "items", ["vendor_id"], name: "index_items_on_vendor_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.integer "order_id"
@@ -71,8 +74,16 @@ ActiveRecord::Schema.define(version: 20150507152933) do
     t.string  "email"
   end
 
+  create_table "vendors", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "slug"
+  end
+
   add_foreign_key "item_categories", "categories"
   add_foreign_key "item_categories", "items"
+  add_foreign_key "items", "vendors"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "statuses"

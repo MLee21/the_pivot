@@ -1,11 +1,12 @@
-<!-- <div class="hero-unit">
+<div class="hero-unit">
 </div>
 <h1 class="hero-h1">Welcome to<br> Cowboy Kyle's Farmer's Market! <br>
 <% if current_user.admin? %>
   <%= link_to "Admin Portal", admin_items_path %>
 <% else %>
-  <%= link_to "Items", items_path %> </h1>
-<% end %> -->
+  <%= link_to "Items", vendor_items_path(vendor: vendor.slug) %> </h1>
+<% end %>
+
 <div class="inner-container">
   <div class="row">
     <div class="col-md-5">
@@ -18,7 +19,10 @@
 
   <div class="row">
     <div class="col-md-3">
-      <p>column 3</p>
+      <h1>Farmers Corner</h1>
+      <p>Tom's Seafood</p>
+      <p>Peter's Produce</p>
+      <p>Pretzel Hut</p>
     </div><!-- col-md-3-->
     <div class="col-md-6">
       <p>column 6</p>
