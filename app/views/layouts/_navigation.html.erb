@@ -14,12 +14,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="navbar_reg_links"><%= link_to "Cowboy Kyle's Farmers Market", root_path %></li>
+        <li class="navbar_reg_links"><%= link_to "Home", root_path %></li>
         <% unless current_user.name_to_display == "Guest" %>
             <li class="navbar_reg_links"><%= link_to "Profile", user_path(current_user) %></li>
             <li class="navbar_reg_links"><%= link_to "Orders", orders_path %></li>
         <% end %>
         <li class="navbar_reg_links"><%= link_to "Browse the Items", items_path %></li>
+        <li class="navbar_reg_links"><%= link_to "Vendors", vendors_path %></li>
         <li class="nav-dropdown">
           <%= form_for(:category, url: :items, method: :get) do |f| %>
             <strong><em><%= f.label "Search: " %></em></strong>
@@ -31,9 +32,9 @@
         <li><% if logged_in? %>
           <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-primary btn-block"%>
         <% else %>
-          <%= button_to "Login", login_path, method: :get, class: "btn btn-primary btn-block" %>
+          <%= link_to "Login/Register", login_path, class: "btn btn-primary btn-block" %>
         <% end %></li>
-        <li><%= link_to "View Dogs in Cart (#{@cart.count_all})", cart_index_path, class: "reg_btn" %></li>
+        <li><%= link_to "View Items in Cart (#{@cart.count_all})", cart_index_path, class: "reg_btn" %></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
