@@ -27,5 +27,12 @@ feature "a guest customer views list of vendors" do
     expect(current_path).to eq(vendor_items_path)
     expect(page).to have_content("Squash")
   end 
+
+  xscenario "and selects a different vendor" do 
+    different_vendor = Vendor.create(name: "John's Ciders")
+  end
+
 end
+
+
 
