@@ -42,3 +42,5 @@ feature "a guest customer views list of vendors" do
   end
 
 end
+
+
