@@ -30,7 +30,7 @@
         <% else %>
           <%= link_to "Login/Register", login_path, class: "btn btn-primary btn-block" %>
         <% end %></li>
-        <li><%= link_to "View Items in Basket (#{@cart.count_all})", cart_index_path, class: "reg_btn" %></li>
+        <li><%= link_to "View Items in Cart (#{@cart.count_all})", cart_index_path, class: "reg_btn" %></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

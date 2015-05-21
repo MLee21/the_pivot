@@ -14,7 +14,7 @@ class Seed
     create_items
     create_orders
     create_categories
-    create_vendors 
+    create_vendors
     create_vendor_items
   end
 
@@ -27,14 +27,14 @@ class Seed
 
 
   def create_vendor_items
-    @item = {title: "Squash", description: "It's good for you", price: 200}
-    @item1 = {title: "Minnie-Burn", description: "Ooowee, it's spicy", price: 100}
-    @item2 = {title: "Tracy's Trio", description: "Boy howdy, these berries sure are mighty tasty", price: 500}
-    @item3 = {title: "Deep Fried Delight", description: "Better than Taco Bell", price: 200}
-    @vendor.items.create!(@item)
-    @vendor2.items.create!(@item1)
-    @vendor3.items.create!(@item2)
-    @vendor4.items.create!(@item3)
+    item = {title: "Squash", description: "It's good for you", price: 200, image: open('app/assets/images/squash.jpg')}
+    item1 = {title: "Minnie-Burn", description: "Ooowee, it's spicy", price: 100, image: open('app/assets/images/hot_sauce.jpg')}
+    item2 = {title: "Tracy's Trio", description: "Boy howdy, these berries sure are mighty tasty", price: 500, image: open('app/assets/images/berries_2.jpg')}
+    item3 = {title: "Deep Fried Delight", description: "Better than Taco Bell", price: 200, image: open('app/assets/images/chalupas.jpg')}
+    @vendor.items.create!(item)
+    @vendor2.items.create!(item1)
+    @vendor3.items.create!(item2)
+    @vendor4.items.create!(item3)
   end
 
   def create_users
@@ -78,7 +78,7 @@ class Seed
     Item.create!(title: "Sean's Delicious Sausage", description: "A hotdog with chololate syrup", price: 300)
     Item.create!(title: "Lasso Dog", description: "A hotdog with fried onions", price: 400, image: open('app/assets/images/onions.jpg'))
     Item.create!(title: "Cowboy Kyle Dog", description: "A hotdog every topping, including chocolate", price: 500)
-  
+
     puts "Items created"
   end
 
@@ -105,7 +105,7 @@ class Seed
     Category.create!(name: "All Dogs", items: Item.all)
     puts "Categories Created"
   end
-  
+
 end
 
 Seed.start
