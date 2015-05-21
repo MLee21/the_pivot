@@ -1,11 +1,18 @@
-<div>
-  <%= @item.title %>
-  <%= @item.description %>
-  <%= @item.to_money_string(@item.price) %>
-  <%= form_for(:order, url: :cart_index) do |f| %>
-    <%= f.number_field :quantity, value: 1, min: 1, max: 25, maxlength: 2 %>
-    <%= f.hidden_field :item_id, value: @item.id %>
-    <%= f.hidden_field :vendor, value: @item.vendor.slug %>
-    <%= f.submit "Add to Basket", class: "reg_btn" %>
-  <% end %>
+<%= render partial: "layouts/vendor_header" %>
+<div class="row">
+  <div class="col-md-6">
+    <%= image_tag(@item.image, class: 'single-image') %>
+  </div>
+
+  <div class="col-md-6">
+    <%= @item.title %>
+    <%= @item.description %>
+    <%= @item.to_money_string(@item.price) %>
+    <%= form_for(:order, url: :cart_index) do |f| %>
+      <%= f.number_field :quantity, value: 1, min: 1, max: 25, maxlength: 2 %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.hidden_field :vendor, value: @item.vendor.slug %>
+      <%= f.submit "Add to Basket", class: "reg_btn" %>
+    <% end %>
+  </div>
 </div>

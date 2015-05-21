@@ -1,3 +1,6 @@
+<%= render partial: "layouts/master_header" %>
 <% @vendors.each do |vendor| %>
-  <%= link_to vendor.name, vendor_items_path(vendor: vendor.slug) %>
+  <div class="col-md-6 vendors">
+    <%= link_to vendor.name, vendor_items_path(vendor: vendor.slug) %>
+  </div>
 <% end %>
