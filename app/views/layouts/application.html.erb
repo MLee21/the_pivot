@@ -8,17 +8,14 @@
   <link href='//fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
   <%= favicon_link_tag "hotdog.ico" %>
 </head>
 <body>
 <div id="wrap">
-  <div class="nav">
-  <% if current_user.admin? %>
-    <%= render partial: "layouts/admin_navigation" %>
-  <% else %>
-    <%= render partial: "layouts/navigation" %>
-  <% end %>
-  </div>
+
 
   <div class="container-fluid">
     <div class="flash">
@@ -32,16 +29,27 @@
     </div>
   </div>
 
-  <div class="container-fluid">
+  <div class="inner-container">
+
+    <div class="nav">
+    <% if current_user.admin? %>
+      <%= render partial: "layouts/admin_navigation" %>
+    <% else %>
+      <%= render partial: "layouts/navigation" %>
+    <% end %>
+    </div>
+
     <%= yield %>
+
+    <div id="footer">
+          <p class="footer_text"><em>We at Cowboy Kyle's Farmers Market</em></p>
+    </div>
   </div>
+
+
 </div>
 
-  <div id="footer">
-      <div class="container"><br><br>
-        <p class="footer_text"><em>We at Cowboy Kyle's Farmers Market</em></p>
-      </div>
-  </div>
+
 
 </body>
 </html>
