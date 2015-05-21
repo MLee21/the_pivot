@@ -9,7 +9,7 @@ class Item < ActiveRecord::Base
   has_many :item_categories
   has_many :categories, through: :item_categories
 
-  has_attached_file :image, default_url: "default_dog.jpg"
+  has_attached_file :image, default_url: "coming-soon.png"
   validates_attachment_content_type :image, content_type: ["image/jpg", "image/jpeg", "image/png"]
 
   default_scope { where(discontinue: false) }
