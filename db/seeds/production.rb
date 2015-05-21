@@ -14,6 +14,27 @@ class Seed
     create_items
     create_orders
     create_categories
+    create_vendors 
+    create_vendor_items
+  end
+
+   def create_vendors
+    @vendor = Vendor.create!(name:"Peter's Produce")
+    @vendor2 = Vendor.create!(name:"Minnie's Smokin' Hot Sauce")
+    @vendor3 = Vendor.create!(name:"Tracy's Berries")
+    @vendor4 = Vendor.create!(name: "Jorge's Chalupa Stand")
+  end
+
+
+  def create_vendor_items
+    @item = {title: "Squash", description: "It's good for you", price: 200}
+    @item1 = {title: "Minnie-Burn", description: "Ooowee, it's spicy", price: 100}
+    @item2 = {title: "Tracy's Trio", description: "Boy howdy, these berries sure are mighty tasty", price: 500}
+    @item3 = {title: "Deep Fried Delight", description: "Better than Taco Bell", price: 200}
+    @vendor.items.create!(@item)
+    @vendor2.items.create!(@item1)
+    @vendor3.items.create!(@item2)
+    @vendor4.items.create!(@item3)
   end
 
   def create_users
