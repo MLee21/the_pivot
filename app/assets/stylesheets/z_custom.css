@@ -51,6 +51,7 @@ body {
 }
 
 body {
+  background-color :#000;
   padding-top: 50px;
 }
 
@@ -275,4 +276,8 @@ img.featured{
 .navbar.navbar-default{
   background-color:#000;
   border:none;
+}
+
+input{
+  color:#000;
 }
