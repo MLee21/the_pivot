@@ -50,7 +50,7 @@ body {
 }
 
 body {
-  padding-top: 100px;
+  padding-top: 50px;
 }
 
 /* Wrapper for page content to push down footer */
@@ -65,15 +65,11 @@ body {
 
 /* Set the fixed height of the footer here */
 #footer {
-  height: 100px;
-  background-color: #483048;
-  color: white;
+  height: 50px
 }
 
 .footer_text {
   font-size: 14px;
-  color: #C2CBCE;
-  text-align: center;
 }
 
 /* Checkbox Styles
@@ -200,7 +196,19 @@ padding-right: 20px;
 
 /* New Styles */
 
+body{
+  color:#fff;
+}
+
 img{width:100%;}
+
+header{
+  margin-bottom:10px;
+}
+
+p{
+  padding:5px 0px;
+}
 
 .inner-container {
   width: 90%;
@@ -211,6 +219,59 @@ img{width:100%;}
 }
 
 .veg{
-  height: 200px;
+  height: 215px;
   border-radius: 5px;
+}
+
+
+.text-center h1, .text-center h2, h2{
+  font-family: 'Arvo', serif;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  margin:0px;
+}
+
+h2{
+  color: #e09c26;
+  text-align:center;
+}
+
+.text-center{
+  text-align:center;
+}
+
+img.featured{
+  border-radius: 5px;
+  margin: 15px 0px -5px;
+  opacity: .9;
+  max-height: 164px;
+}
+
+.rounded-border{
+  border-radius: 5px;
+  border: 5px solid #fff;
+  padding:15px;
+  margin: .75%;
+  max-height:630px;
+}
+
+.hp-center{
+  width: 45.5%;
+}
+
+.hp-img {
+  padding: 0px 1%;
+  width: 33.3%;
+}
+
+.order-online{
+  width: 95%;
+  margin: 5px auto 0px;
+  display: block;
+}
+
+.navbar.navbar-default{
+  background-color:#000;
+  border:none;
 }
