@@ -10,11 +10,15 @@ class Order < ActiveRecord::Base
   include ContentReport
 
   def date
-    order_date.to_date
+    order_date.strftime("%B %-d, %Y")
   end
 
   def time
-    order_date.strftime("%H:%M")
+    order_date.strftime("%-l:%M %p")
+  end
+
+  def updated_time
+    order_date.strftime("%B %-d, %Y %-l:%M%P")
   end
 
   def total
@@ -48,7 +52,7 @@ class Order < ActiveRecord::Base
   end
 
   def set_status_to_paid
-    status_id       = Status.paid_id
+    status_id      = Status.paid_id
     self.status_id = status_id
     self.save
   end
