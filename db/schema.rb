@@ -68,10 +68,10 @@ ActiveRecord::Schema.define(version: 20150520002359) do
 
   create_table "users", force: :cascade do |t|
     t.string  "full_name"
-    t.string  "password_digest"
     t.string  "display_name"
-    t.integer "role"
     t.string  "email"
+    t.integer "role"
+    t.string  "password_digest"
   end
 
   create_table "vendors", force: :cascade do |t|
