@@ -16,4 +16,12 @@ FactoryGirl.define do
     password      'p'
   end
 
+  factory :admin2, class: User do
+    full_name     'Admin'
+    email         'busadmin@email.com'
+    role          1
+    display_name  'busadmin'
+    password      'p'
+  end
+
 end

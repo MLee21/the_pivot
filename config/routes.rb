@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
-  namespace :admin do 
+### Move resources :items, :categories, :orders to namespace
+### :vendors
+### Add resources :admin for platform admin functionality
+  namespace :admin do
     resources :items
     resources :categories
-    resources :items
     resources :orders
   end
 
@@ -12,9 +14,9 @@ Rails.application.routes.draw do
   resources :cart
   resources :charges
   resources :vendors, only: [:show, :index]
-  
 
-  namespace :vendors, as: :vendor, path: "/:vendor" do 
+
+  namespace :vendors, as: :vendor, path: "/:vendor" do
     resources :items
   end
   # get            "/payment", to: "orders#payment"
@@ -25,5 +27,5 @@ Rails.application.routes.draw do
   delete          "/logout", to: "sessions#destroy"
   post      "admin/options", to: "admin/options#route"
 
-  root "home#new" 
+  root "home#new"
 end
