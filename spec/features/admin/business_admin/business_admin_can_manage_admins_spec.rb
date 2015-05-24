@@ -2,31 +2,32 @@ require 'rails_helper'
 
 RSpec.feature 'business admin CRUD functionality for secondary admins' do
 
-  # let!(:admin2) { create(:admin2) }
-  # let!(:admin)  { create(:admin) }
-  # let!(:vendor) { create(:vendor) }
-  # let!(:item)   { create(:item) }
-  # let!(:status) { create(:status) }
-  # let!(:vendor) { create(:vendor) }
-  # admin.vendor_id = vendor.id
-  # admin2.vendor_id = vendor.id
-
+  before(:each) do
+    @vendor = Vendor.create(name: "Peter's Produce")
+    @business_admin = User.create(full_name:"MyName", email: "Whatevs@gmail.com", password:"password", password_confirmation: "password", role: 1, vendor_id: @vendor.id)
+    item = {title: "Squash", description: "It's good for you", price: 200}
+    item2 = {title: "Melon", description: "It's good for you", price: 300}
+    item3 = {title: "Strawberries", description: "It's good for you", price: 400}
+    @vendor.items.create(item)
+    @vendor.items.create(item2)
+    @vendor.items.create(item3)
+  end
 
   scenario 'with secondary admin logged in, admin can not view all admins' do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admins_path(vendor: vendor.slug)
     expect(page).to have_content "The page you were looking for doesn't exists (404)"
   end
 
 
   scenario 'with secondary admin logged in, admin can not create admins' do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit new_vendor_admin_path(vendor: vendor.slug)
     expect(page).to have_content "The page you were looking for doesn't exists (404)"
   end
 
   scenario 'with secondary admin logged in, admin can update their own account' do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admin_path(vendor: vendor.slug)
 
     expect(page).to have_content "Welcome, MyName!"
@@ -58,7 +59,7 @@ RSpec.feature 'business admin CRUD functionality for secondary admins' do
   end
 
   scenario 'with secondary admin logged in, admin can update their own account' do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admin_path(vendor: vendor.slug)
 
     expect(page).to have_content "Welcome, MyName!"
