@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.feature 'business admin CRUD functionality for secondary admins' do
 
-  let!(:admin2) { create(:admin2) }
-  let!(:admin)  { create(:admin) }
-  let!(:vendor) { create(:vendor) }
-  let!(:item)   { create(:item) }
-  let!(:status) { create(:status) }
-  let!(:vendor) { create(:vendor) }
-  admin.vendor_id = vendor.id
-  admin2.vendor_id = vendor.id
+  # let!(:admin2) { create(:admin2) }
+  # let!(:admin)  { create(:admin) }
+  # let!(:vendor) { create(:vendor) }
+  # let!(:item)   { create(:item) }
+  # let!(:status) { create(:status) }
+  # let!(:vendor) { create(:vendor) }
+  # admin.vendor_id = vendor.id
+  # admin2.vendor_id = vendor.id
 
 
   scenario 'with secondary admin logged in, admin can not view all admins' do
