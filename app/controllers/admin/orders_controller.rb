@@ -3,10 +3,10 @@ class Admin::OrdersController < Admin::BaseController
   def index
     @order_counts = current_user.orders_by_status
     if params.has_key?(:status)
-      @orders = Status.find(params[:status][:status_id]).orders
+      @orders = Status.find(params[:status][:status_id]).orders.where(vendor_id: current_user.vendor_id)
       @list   = Status.find(params[:status][:status_id]).name
     else
-      @orders = Order.all
+      @orders = Order.all.where(vendor_id: current_user.vendor_id)
       @list   = "all orders"
     end
   end

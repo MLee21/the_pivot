@@ -32,7 +32,7 @@
   <div class="inner-container">
 
     <div class="nav">
-    <% if current_user.admin? %>
+    <% if current_user.business_administrator? %>
       <%= render partial: "layouts/admin_navigation" %>
     <% else %>
       <%= render partial: "layouts/navigation" %>

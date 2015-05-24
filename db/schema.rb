@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520002359) do
+ActiveRecord::Schema.define(version: 20150524182107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,11 +68,14 @@ ActiveRecord::Schema.define(version: 20150520002359) do
 
   create_table "users", force: :cascade do |t|
     t.string  "full_name"
+    t.string  "password_digest"
     t.string  "display_name"
     t.string  "email"
-    t.integer "role"
-    t.string  "password_digest"
+    t.integer "vendor_id"
+    t.string  "type",            null: false
   end
+
+  add_index "users", ["vendor_id"], name: "index_users_on_vendor_id", using: :btree
 
   create_table "vendors", force: :cascade do |t|
     t.string   "name"
@@ -88,4 +91,5 @@ ActiveRecord::Schema.define(version: 20150520002359) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "statuses"
   add_foreign_key "orders", "users"
+  add_foreign_key "users", "vendors"
 end

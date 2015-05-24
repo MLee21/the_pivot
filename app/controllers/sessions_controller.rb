@@ -6,12 +6,13 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: session_params[:email])
-    if user && user.authenticate(session_params[:password]) && !user.orders.nil?
+    if user && user.authenticate(session_params[:password])
       session[:user_id] = user.id
-      redirect_to root_path
-    elsif user && user.authenticate(session_params[:password])
-      session[:user_id] = user.id
-      redirect_to root_path
+      if user.administrator?
+        redirect_to admin_dashboard_path
+      else
+        redirect_to vendors_path
+      end
     else
       flash[:errors] = "Invalid login"
       redirect_to login_path

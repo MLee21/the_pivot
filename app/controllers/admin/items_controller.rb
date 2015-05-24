@@ -1,7 +1,8 @@
 class Admin::ItemsController < Admin::BaseController
   
   def index
-    @items = Item.unscoped.all
+    oracle = Oracle.new(current_user)
+    @items = oracle.items
   end
 
   def new

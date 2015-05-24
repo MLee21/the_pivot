@@ -2,7 +2,7 @@
   <div class="item_box">
     <%= image_tag(item.image, class: 'default_image') %><br>
     <ul>
-      <li><%= link_to(item.title, item) %></li>
+      <li><%= link_to(item.title, admin_item_path(item)) %></li>
       <li><%= item.to_money_string(item.price) %></li>
       <li><%= link_to 'Edit', edit_admin_item_path(item) %></li>
     </ul>

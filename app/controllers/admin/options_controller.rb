@@ -5,5 +5,6 @@ class Admin::OptionsController < Admin::BaseController
     redirect_to admin_items_path      if option == "items"
     redirect_to admin_orders_path     if option == "orders"
     redirect_to admin_categories_path if option == "categories"
+    redirect_to admin_vendors_path    if option == "vendors"
   end
 end
