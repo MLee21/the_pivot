@@ -2,13 +2,18 @@ require 'rails_helper'
 
 RSpec.feature 'business admin item CRUD functionality' do
 
-  let!(:admin)    { create(:admin) }
-  let!(:item)     { create(:item) }
-  let!(:status)   { create(:status) }
-  let!(:vendor)   { create(:vendor) }
-  # let!(:category) { create(:category) }
+  before(:each) do 
+    @vendor = Vendor.create(name: "Peter's Produce")
+    @business_admin = User.create(full_name:"Gary Johnson", email: "Whatevs@gmail.com", password:"password", password_confirmation: "password", role: 1, vendor_id: @vendor.id)
+    item = {title: "Squash", description: "It's good for you", price: 200}
+    item2 = {title: "Melon", description: "It's good for you", price: 300}
+    item3 = {title: "Strawberries", description: "It's good for you", price: 400}
+    @vendor.items.create(item)
+    @vendor.items.create(item2)
+    @vendor.items.create(item3)
+  end
 
-  context 'with admin logged in, admin can view items' do
+  scenario 'with admin logged in, admin can view items' do
     allow_any_instance_of(ApplicationController).to recieve(:current).and_return(admin)
     visit vendors_path
     click_link "Peter's Produce"
@@ -24,7 +29,7 @@ RSpec.feature 'business admin item CRUD functionality' do
     expect(page).to have_button("Delete Item")
   end
 
-  context 'with admin logged in, admin can create items' do
+  scenario 'with admin logged in, admin can create items' do
     allow_any_instance_of(ApplicationController).to recieve(:current).and_return(admin)
     visit vendors_path
     click_link "Peter's Produce"
@@ -45,7 +50,7 @@ RSpec.feature 'business admin item CRUD functionality' do
     expect(page).to have_content("$5.00")
   end
 
-  context 'with admin logged in, admin can edit items' do
+  scenario 'with admin logged in, admin can edit items' do
     allow_any_instance_of(ApplicationController).to recieve(:current).and_return(admin)
     visit vendors_path
     click_link "Peter's Produce"
@@ -72,7 +77,7 @@ RSpec.feature 'business admin item CRUD functionality' do
     expect(page).to have_content("$.50")
   end
 
-  context 'with admin logged in, admin can edit items' do
+  scenario 'with admin logged in, admin can edit items' do
     allow_any_instance_of(ApplicationController).to recieve(:current).and_return(admin)
     visit vendors_path
     click_link "Peter's Produce"
@@ -88,4 +93,5 @@ RSpec.feature 'business admin item CRUD functionality' do
     expect(page).not_to have_content("Squash")
     expect(page).not_to have_content("It's good for you")
     expect(page).not_to have_content("$2.00")
+  end
 end
