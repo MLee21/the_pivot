@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'business admin item CRUD functionality' do
 
-  before(:each) do 
+  before(:each) do
     @vendor = Vendor.create(name: "Peter's Produce")
     @business_admin = User.create(full_name:"Gary Johnson", email: "Whatevs@gmail.com", password:"password", password_confirmation: "password", role: 1, vendor_id: @vendor.id)
     item = {title: "Squash", description: "It's good for you", price: 200}
@@ -14,7 +14,7 @@ RSpec.feature 'business admin item CRUD functionality' do
   end
 
   scenario 'with admin logged in, admin can view items' do
-    allow_any_instance_of(ApplicationController).to recieve(:current).and_return(admin)
+    allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(@business_admin)
     visit vendors_path
     click_link "Peter's Produce"
 
@@ -30,7 +30,7 @@ RSpec.feature 'business admin item CRUD functionality' do
   end
 
   scenario 'with admin logged in, admin can create items' do
-    allow_any_instance_of(ApplicationController).to recieve(:current).and_return(admin)
+    allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(@business_admin)
     visit vendors_path
     click_link "Peter's Produce"
     expect(current_path).to eq vendor_admin_items_path(vendor)
@@ -51,7 +51,7 @@ RSpec.feature 'business admin item CRUD functionality' do
   end
 
   scenario 'with admin logged in, admin can edit items' do
-    allow_any_instance_of(ApplicationController).to recieve(:current).and_return(admin)
+    allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(@business_admin)
     visit vendors_path
     click_link "Peter's Produce"
     expect(current_path).to eq vendor_admin_items_path(vendor)
@@ -78,7 +78,7 @@ RSpec.feature 'business admin item CRUD functionality' do
   end
 
   scenario 'with admin logged in, admin can edit items' do
-    allow_any_instance_of(ApplicationController).to recieve(:current).and_return(admin)
+    allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(@business_admin)
     visit vendors_path
     click_link "Peter's Produce"
     expect(current_path).to eq vendor_admin_items_path(vendor)
