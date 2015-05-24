@@ -1,6 +1,18 @@
 class Guest
 
-  def admin?
+  def administrator?
+    false
+  end
+
+  def business_administrator?
+    false
+  end
+
+  def registered_user?
+    false
+  end
+
+  def platform_administrator?
     false
   end
 

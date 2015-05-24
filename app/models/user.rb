@@ -4,10 +4,23 @@ class User < ActiveRecord::Base
   validates :display_name, length: { in: 2..32 }, allow_blank: true
 
   has_many :orders
-
   has_secure_password
 
-  enum role: ["default", "admin"]
+  def administrator?
+    business_administrator? || platform_administrator?
+  end
+
+  def business_administrator?
+    is_a? BusinessAdministrator 
+  end
+
+  def registered_user?
+    is_a? RegisteredUser 
+  end
+
+  def platform_administrator?
+    is_a? PlatformAdministrator
+  end
 
   def display?
     display_name && display_name != ""

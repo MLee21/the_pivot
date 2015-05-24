@@ -1,36 +1,49 @@
 require 'rails_helper'
 
-RSpec.feature 'business admin item CRUD functionality' do
+feature 'business admin item CRUD functionality' do
 
   before(:each) do
     @vendor = Vendor.create(name: "Peter's Produce")
-    @business_admin = User.create(full_name:"Gary Johnson", email: "Whatevs@gmail.com", password:"password", password_confirmation: "password", role: 1, vendor_id: @vendor.id)
-    item = {title: "Squash", description: "It's good for you", price: 200}
-    item2 = {title: "Melon", description: "It's good for you", price: 300}
-    item3 = {title: "Strawberries", description: "It's good for you", price: 400}
-    @vendor.items.create(item)
-    @vendor.items.create(item2)
-    @vendor.items.create(item3)
+    @vendor2 = Vendor.create(name: "Nicholas Cage's Candies")
+    @business_admin = BusinessAdministrator.create(full_name:"Gary Johnson", email: "Whatevs@gmail.com", password:"password", password_confirmation: "password", vendor: @vendor)
+    @business_admin2 = BusinessAdministrator.create(full_name:"Marilyn Manson", email: "Bloodbath@gmail.com", password:"password", password_confirmation: "password", vendor: @vendor2)
+    @vendor.items.create({title: "Squash", description: "It's good for you", price: 200})
+    @vendor.items.create({title: "Melon", description: "It's good for you", price: 300})
+    @vendor.items.create({title: "Strawberries", description: "It's good for you", price: 400})
+    @vendor2.items.create({title: "OMG gummies", description: "Ah", price: 200})
   end
 
-  scenario 'with admin logged in, admin can view items' do
-    allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(@business_admin)
-    visit vendors_path
-    click_link "Peter's Produce"
-
-    expect(current_path).to eq vendor_admin_items_path(vendor)
+  scenario "an admin logs in and is redirected to view admin's vendor information" do
+    visit root_path
+    click_link "Login/Register"
+    fill_in "session[email]", with: "Whatevs@gmail.com"
+    fill_in "session[password]", with: "password"
+    click_button "Submit"
+    expect(current_path).to eq(admin_dashboard_path)
     expect(page).to have_content("Peter's Produce")
-    expect(page).to have_content("Squash")
-    expect(page).to have_link("Squash")
-    expect(page).to have_content("It's good for you")
-    expect(page).to have_content("$2.00")
-    expect(page).to have_link("Edit")
-    expect(page).to have_button("Create Item")
-    expect(page).to have_button("Delete Item")
+    expect(page).to have_link("View Orders")
+    expect(page).to have_link("Current Items")
+    expect(page).to have_link("Manage Administrators")
+    expect(page).to have_link("Edit Vendor Profile")
   end
 
-  scenario 'with admin logged in, admin can create items' do
-    allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(@business_admin)
+  scenario "a business admin can only see their vendor information" do 
+    visit root_path
+    click_link "Login/Register"
+    fill_in "session[email]", with: "Whatevs@gmail.com"
+    fill_in "session[password]", with: "password"
+    click_button "Submit"
+    expect(current_path).to eq(admin_dashboard_path)
+    expect(page).to have_content("Peter's Produce")
+    click_link "Current Items"
+    expect(page).to have_content("Squash")
+    expect(page).to have_content("Melon")
+    expect(page).to have_content("Strawberries")
+    expect(page).to_not have_content("OMG gummies")
+  end 
+
+  xscenario 'with admin logged in, admin can create items' do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendors_path
     click_link "Peter's Produce"
     expect(current_path).to eq vendor_admin_items_path(vendor)
@@ -50,8 +63,8 @@ RSpec.feature 'business admin item CRUD functionality' do
     expect(page).to have_content("$5.00")
   end
 
-  scenario 'with admin logged in, admin can edit items' do
-    allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(@business_admin)
+  xscenario 'with admin logged in, admin can edit items' do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendors_path
     click_link "Peter's Produce"
     expect(current_path).to eq vendor_admin_items_path(vendor)
@@ -77,8 +90,8 @@ RSpec.feature 'business admin item CRUD functionality' do
     expect(page).to have_content("$.50")
   end
 
-  scenario 'with admin logged in, admin can edit items' do
-    allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(@business_admin)
+  xscenario 'with admin logged in, admin can edit items' do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendors_path
     click_link "Peter's Produce"
     expect(current_path).to eq vendor_admin_items_path(vendor)
