@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.feature 'original business admin CRUD functionality for other admins' do
 
-  let!(:admin2) { create(:admin2) }
-  let!(:admin)  { create(:admin) }
-  let!(:vendor) { create(:vendor) }
-  let!(:item)   { create(:item) }
-  let!(:status) { create(:status) }
-  let!(:vendor) { create(:vendor) }
-  admin.vendor_id = vendor.id
-  admin2.vendor_id = vendor.id
+  # let!(:admin2) { create(:admin2) }
+  # let!(:admin)  { create(:admin) }
+  # let!(:vendor) { create(:vendor) }
+  # let!(:item)   { create(:item) }
+  # let!(:status) { create(:status) }
+  # let!(:vendor) { create(:vendor) }
+  # admin.vendor_id = vendor.id
+  # admin2.vendor_id = vendor.id
 
   scenario 'with original admin logged in, admin can view all admins' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin2)
