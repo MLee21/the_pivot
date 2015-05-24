@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     resources :items
     resources :categories
     resources :orders
+    resources :vendors
+    get "dashboard", to: "dashboard#index"
+    resources :admins
   end
 
   resources :orders

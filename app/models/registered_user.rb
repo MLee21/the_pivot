@@ -1,0 +1,4 @@
+class RegisteredUser < User
+
+
+end

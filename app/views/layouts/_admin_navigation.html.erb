@@ -11,13 +11,7 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="navbar_reg_links"><%= link_to "Cowboy Kyle's Hotdog Ranch", root_path %></li>
-        <li class="nav-dropdown", id='admin_options'>
-          <%= form_for(:option, url: :admin_options) do |f| %>
-            <strong><em><%= f.label "Select: " %></em></strong>
-            <%= f.select :option_type, { "Admin Options" => "", "Categories" => "categories", "Items" => "items", "Orders" => "orders" }, {}, :onchange => "submit()" %>
-          <% end %>
-      </li>
+        <li class="navbar_reg_links"><%= link_to "Cowboy Kyle's Farmers Market", root_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><% if logged_in? %>
