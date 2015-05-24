@@ -2,17 +2,20 @@ require 'rails_helper'
 
 RSpec.feature 'original business admin CRUD functionality for other admins' do
 
-  # let!(:admin2) { create(:admin2) }
-  # let!(:admin)  { create(:admin) }
-  # let!(:vendor) { create(:vendor) }
-  # let!(:item)   { create(:item) }
-  # let!(:status) { create(:status) }
-  # let!(:vendor) { create(:vendor) }
-  # admin.vendor_id = vendor.id
-  # admin2.vendor_id = vendor.id
+  before(:each) do
+    @vendor = Vendor.create(name: "Peter's Produce")
+    @business_admin = User.create(full_name:"MyName", email: "Whatevs@gmail.com", password:"password", password_confirmation: "password", role: 1, vendor_id: @vendor.id)
+    @business_admin2 = User.create(full_name:"Admin", email: "Whatevs@gmail.com", password:"password", password_confirmation: "password", role: 1, vendor_id: @vendor.id)
+    item = {title: "Squash", description: "It's good for you", price: 200}
+    item2 = {title: "Melon", description: "It's good for you", price: 300}
+    item3 = {title: "Strawberries", description: "It's good for you", price: 400}
+    @vendor.items.create(item)
+    @vendor.items.create(item2)
+    @vendor.items.create(item3)
+  end
 
   scenario 'with original admin logged in, admin can view all admins' do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin2)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admins_path(vendor: vendor.slug)
     expect(page).to have_content "Welcome, Admin!"
     expect(page).to have_content "Peter's Produce"
@@ -28,7 +31,7 @@ RSpec.feature 'original business admin CRUD functionality for other admins' do
   end
 
   scenario 'with original admin logged in, admin can create admins' do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin2)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admins_path(vendor: vendor.slug)
     click_button "Create Admin"
 
@@ -54,7 +57,7 @@ RSpec.feature 'original business admin CRUD functionality for other admins' do
   end
 
   scenario 'with original admin logged in, admin can update admins' do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin2)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admins_path(vendor: vendor.slug)
 
     expect(page).to have_content "Welcome, Admin!"
@@ -93,7 +96,7 @@ RSpec.feature 'original business admin CRUD functionality for other admins' do
   end
 
   scenario 'with original admin logged in, admin can update admins' do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin2)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admins_path(vendor: vendor.slug)
 
     expect(page).to have_content "Welcome, Admin!"
