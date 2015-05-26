@@ -320,3 +320,7 @@ input{
 .items img {
   margin: 10px 0;
 }
+
+.inner-container {
+  margin-top: 30px;
+}

@@ -6,7 +6,7 @@ class Admin::DashboardController < Admin::BaseController
       render :business_dashboard
     else
       @vendors = Vendor.all
-      render :platform_dashboard
+      render :platform_dashboardd
     end
   end
 

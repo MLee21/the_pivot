@@ -25,10 +25,10 @@ class Item < ActiveRecord::Base
     self.save
   end
 
-  def add_all_category
-    category_all = Category.find_by(name: "All Dogs")
-    self.categories << category_all unless self.categories.include?(category_all)
-  end
+  # def add_all_category
+  #   category_all = Category.find_by(name: "All Items")
+  #   self.categories << category_all unless self.categories.include?(category_all)
+  # end
 
   def category_list
     self.categories.map { |category| category.name }
@@ -36,8 +36,7 @@ class Item < ActiveRecord::Base
 
   def adjust_information(form_price_value)
     self.format_price(form_price_value)
-    self.add_all_category
-    self.save
+    # self.add_all_category
   end
 
 end
