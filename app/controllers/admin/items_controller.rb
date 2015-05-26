@@ -12,6 +12,8 @@ class Admin::ItemsController < Admin::BaseController
 
   def create
     item = Item.new(item_params)
+    oracle = Oracle.new(current_user)
+    new_item = oracle.items << item 
     item.adjust_information(item_params[:price])
     if item.save
       redirect_to admin_items_path

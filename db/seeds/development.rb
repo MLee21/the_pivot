@@ -41,7 +41,7 @@ class Seed
     @rachel = RegisteredUser.create!(full_name: "Rachel Warbelow", password: "password", email: "demo_rachel@jumpstartlab.com")
     @jeff = RegisteredUser.create!(full_name: "Jeff Casimir", password: "password", display_name: "j3", email: "demo_jeff@jumpstartlab.com")
     @jorge = RegisteredUser.create!(full_name: "Jorge Tellez", password: "password", display_name: "novohispano", email: "demo_jorge@jumpstartlab.com")
-    @josh = BusinessAdministrator.create!(full_name: "Josh Cheek", password: "password", display_name: "josh", email: "demo_josh@jumpstartlab.com", vendor_id: @vendor.id)
+    @josh = BusinessAdministrator.create!(full_name: "Josh Cheek", password: "password", display_name: "josh", email: "demo_josh@jumpstartlab.com", vendor: @vendor)
 
     puts "#{User.all.map(&:full_name).join(", ")} created."
   end
@@ -101,7 +101,7 @@ class Seed
     Category.create!(name: "Kyle's faves", items: [Item.find(5), Item.find(20)])
     Category.create!(name: "Real", items: [Item.find(6)])
     Category.create!(name: "Puns", items: [Item.find(8), Item.find(5)])
-    Category.create!(name: "All Dogs", items: Item.all)
+    Category.create!(name: "All Items", items: Item.all)
     puts "Categories Created"
   end
 
