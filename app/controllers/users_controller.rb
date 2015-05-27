@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def new
-    @user = User.new
+    @user = RegisteredUser.new
   end
 
   def show
@@ -10,11 +10,11 @@ class UsersController < ApplicationController
 
   def edit
     owner?(params[:id].to_i)
-    @user = User.find(params[:id])
+    @user = RegisteredUser.find(params[:id])
   end
 
   def create
-    @user = User.new(user_params)
+    @user = RegisteredUser.new(user_params)
 
     if @user.save
       session[:user_id] = @user.id
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(current_user.id)
+    @user = RegisteredUser.find(current_user.id)
     if @user.update(user_params) && @user.authenticate(user_params[:password])
       redirect_to root_path
     else
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:full_name, :display_name, :email, :password)
+    params.require(:registered_user).permit(:full_name, :display_name, :email, :password)
   end
 
 end
