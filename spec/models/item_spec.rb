@@ -57,19 +57,19 @@ RSpec.describe "Item", type: :model do
     expect(item.price).to eq(500)
   end
 
-  it "can add a 'all' category to an item" do
+  xit "can add a 'all' category to an item" do
    category = Category.create(name: "All Dogs") 
    item.add_all_category
    expect(item.categories).to eq([category])
   end
 
-  it "returns a list of categories for an item" do 
+  xit "returns a list of categories for an item" do 
     category = Category.create(name: "All Dogs") 
     item.add_all_category
     expect(item.category_list).to eq(["All Dogs"])
   end
 
-  it "can adjust information for the database" do
+  xit "can adjust information for the database" do
     category = Category.create(name: "All Dogs") 
     item.adjust_information(5.00)
     expect(item.price).to eq(500)

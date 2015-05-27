@@ -5,7 +5,7 @@ RSpec.describe 'admin item edit' do
   let!(:admin) { create(:admin) }
   let!(:item)  { create(:item) }
 
-  context 'with admin logged in' do
+  xcontext 'with admin logged in' do
 
     it 'allows admin to edit items' do
       item.title = 'super dog'
