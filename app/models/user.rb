@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   end
 
   def orders_by_status
-    if admin?
+    if administrator?
       order_list = Order.all
     else
       order_list = orders

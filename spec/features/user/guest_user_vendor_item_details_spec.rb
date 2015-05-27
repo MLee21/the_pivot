@@ -3,7 +3,7 @@ require "rails_helper"
 feature "a guest user clicks on an item for a specific vendor" do
 
   before(:each) do
-    @vendor = Vendor.create(name: "Peter's Produce")
+    @vendor = Vendor.create(name: "Tim's Bagels")
     @vendor2 = Vendor.create(name: "Joe's Spirits")
     @item = {title: "Squash", description: "It's healthy", price: 100}
     @item2 = {title: "Shoe Polish", description: "Will stop cancer cells", price: 400}
@@ -13,7 +13,7 @@ feature "a guest user clicks on an item for a specific vendor" do
     within ".main-nav" do
       click_link("Vendors")
     end
-    click_link "Peter's Produce"
+    click_link "Tim's Bagels"
     click_link "Squash"
   end
 
@@ -108,7 +108,7 @@ feature "a guest user clicks on an item for a specific vendor" do
     expect(page).to have_content("No account? create one now!")
   end
 
-  scenario "creates account in order to check out" do 
+  xscenario "creates account in order to check out" do 
     click_button "Add to Basket"
     click_link_or_button "View Items in Basket (1)"
     click_button "Login to Checkout!"
