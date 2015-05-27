@@ -8,6 +8,11 @@ class Admin::CategoriesController < Admin::BaseController
     @category = Category.new
   end
 
+  def show
+    category = Category.find(params[:id])
+    @category_items = current_user.vendor.items.each {|item| item.categories.pluck(:name) == category.name}
+  end
+
   def edit
     @category = Category.find(params[:id])
   end

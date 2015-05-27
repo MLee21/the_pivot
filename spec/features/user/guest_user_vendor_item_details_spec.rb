@@ -3,7 +3,7 @@ require "rails_helper"
 feature "a guest user clicks on an item for a specific vendor" do
 
   before(:each) do
-    @vendor = Vendor.create(name: "Peter's Produce")
+    @vendor = Vendor.create(name: "Tim's Bagels")
     @vendor2 = Vendor.create(name: "Joe's Spirits")
     @item = {title: "Squash", description: "It's healthy", price: 100}
     @item2 = {title: "Shoe Polish", description: "Will stop cancer cells", price: 400}
@@ -13,7 +13,7 @@ feature "a guest user clicks on an item for a specific vendor" do
     within ".main-nav" do
       click_link("Vendors")
     end
-    click_link "Peter's Produce"
+    click_link "Tim's Bagels"
     click_link "Squash"
   end
 
@@ -116,12 +116,11 @@ feature "a guest user clicks on an item for a specific vendor" do
 
     click_button "Create Account"
     expect(current_path).to eq(new_user_path)
-
-    fill_in "user[full_name]", with: "Fred Durst"
-    fill_in "user[display_name]", with: "buckethat"
-    fill_in "user[email]", with: "rollinbitches@gmail.com"
-    fill_in "user[password]", with: "douchebag"
-    fill_in "user[password_confirmation]", with: "douchebag"
+    fill_in "registered_user[full_name]", with: "Fred Durst"
+    fill_in "registered_user[display_name]", with: "buckethat"
+    fill_in "registered_user[email]", with: "rollinbitches@gmail.com"
+    fill_in "registered_user[password]", with: "douchebag"
+    fill_in "registered_user[password_confirmation]", with: "douchebag"
     click_button("Create Account")
     expect(current_path).to eq(cart_index_path)
   end

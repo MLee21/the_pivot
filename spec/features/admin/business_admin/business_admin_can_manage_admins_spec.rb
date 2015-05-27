@@ -13,20 +13,20 @@ RSpec.feature 'business admin CRUD functionality for secondary admins' do
     @vendor.items.create(item3)
   end
 
-  scenario 'with secondary admin logged in, admin can not view all admins' do
+  xscenario 'with secondary admin logged in, admin can not view all admins' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admins_path(vendor: vendor.slug)
     expect(page).to have_content "The page you were looking for doesn't exists (404)"
   end
 
 
-  scenario 'with secondary admin logged in, admin can not create admins' do
+  xscenario 'with secondary admin logged in, admin can not create admins' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit new_vendor_admin_path(vendor: vendor.slug)
     expect(page).to have_content "The page you were looking for doesn't exists (404)"
   end
 
-  scenario 'with secondary admin logged in, admin can update their own account' do
+  xscenario 'with secondary admin logged in, admin can update their own account' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admin_path(vendor: vendor.slug)
 
@@ -58,7 +58,7 @@ RSpec.feature 'business admin CRUD functionality for secondary admins' do
     expect(page).to have_content "update@email.com"
   end
 
-  scenario 'with secondary admin logged in, admin can update their own account' do
+  xscenario 'with secondary admin logged in, admin can update their own account' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admin_path(vendor: vendor.slug)
 

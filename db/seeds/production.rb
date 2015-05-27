@@ -9,13 +9,13 @@ class Seed
   end
 
   def generate
+    create_vendors
+    create_vendor_items
     create_users
     create_statuses
     create_items
     create_orders
     create_categories
-    create_vendors
-    create_vendor_items
   end
 
    def create_vendors
@@ -41,7 +41,7 @@ class Seed
     @rachel = RegisteredUser.create!(full_name: "Rachel Warbelow", password: "password", email: "demo_rachel@jumpstartlab.com")
     @jeff = RegisteredUser.create!(full_name: "Jeff Casimir", password: "password", display_name: "j3", email: "demo_jeff@jumpstartlab.com")
     @jorge = RegisteredUser.create!(full_name: "Jorge Tellez", password: "password", display_name: "novohispano", email: "demo_jorge@jumpstartlab.com")
-    @josh = BusinessAdministrator.create!(full_name: "Josh Cheek", password: "password", display_name: "josh", email: "demo_josh@jumpstartlab.com", vendor: @vendor)
+    @josh = BusinessAdministrator.create!(full_name: "Josh Cheek", password: "password", display_name: "josh", email: "demo_josh@jumpstartlab.com", vendor_id: @vendor.id)
 
     puts "#{User.all.map(&:full_name).join(", ")} created."
   end

@@ -29,6 +29,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem "nyan-cat-formatter"
+  gem 'brakeman'
   # gem 'better_errors'
   # gem 'binding_of_caller'
   # gem 'emoji-rspec', git: "git@github.com:carhartl/emoji-rspec/tree/rspec-3"

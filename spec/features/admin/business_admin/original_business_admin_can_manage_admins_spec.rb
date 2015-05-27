@@ -14,7 +14,7 @@ RSpec.feature 'original business admin CRUD functionality for other admins' do
     @vendor.items.create(item3)
   end
 
-  scenario 'with original admin logged in, admin can view all admins' do
+  xscenario 'with original admin logged in, admin can view all admins' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admins_path(vendor: vendor.slug)
     expect(page).to have_content "Welcome, Admin!"
@@ -30,7 +30,7 @@ RSpec.feature 'original business admin CRUD functionality for other admins' do
     expect(page).to have_content "busadmin"
   end
 
-  scenario 'with original admin logged in, admin can create admins' do
+  xscenario 'with original admin logged in, admin can create admins' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admins_path(vendor: vendor.slug)
     click_button "Create Admin"
@@ -56,7 +56,7 @@ RSpec.feature 'original business admin CRUD functionality for other admins' do
     expect(page).to have_content "Partnuh@email.com"
   end
 
-  scenario 'with original admin logged in, admin can update admins' do
+  xscenario 'with original admin logged in, admin can update admins' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admins_path(vendor: vendor.slug)
 
@@ -95,7 +95,7 @@ RSpec.feature 'original business admin CRUD functionality for other admins' do
     expect(page).to have_content "update@email.com"
   end
 
-  scenario 'with original admin logged in, admin can update admins' do
+  xscenario 'with original admin logged in, admin can update admins' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
     visit vendor_admins_path(vendor: vendor.slug)
 
