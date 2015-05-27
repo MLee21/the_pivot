@@ -32,13 +32,18 @@
   <div class="inner-container">
 
     <div class="nav">
-    <% if current_user.business_administrator? %>
+    <% if current_user.administrator? %>
       <%= render partial: "layouts/admin_navigation" %>
     <% else %>
       <%= render partial: "layouts/navigation" %>
     <% end %>
     </div>
 
+  <div class="profile-sidebar">
+    <% if current_user.administrator? || current_user.registered_user? %>
+      <%= render partial: "layouts/profile_sidebar" %>
+    <% end %>
+  </div>
     <%= yield %>
 
     <footer id="footer">
