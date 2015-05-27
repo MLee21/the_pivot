@@ -325,7 +325,6 @@ input{
   margin-top: 30px;
 }
 
-
 #footer {
   height: 50px;
   position: absolute;
@@ -355,6 +354,5 @@ ul.admin_nav li {
 }
 
 ul.admin_nav li a{
-  color: ;
   font-weight:bold;
 }
