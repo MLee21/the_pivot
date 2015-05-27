@@ -6,7 +6,7 @@ RSpec.feature 'admin category create' do
 
   context 'with admin logged in' do
 
-    scenario 'allows admin to create a category' do
+    xscenario 'allows admin to create a category' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit new_admin_category_path
 
@@ -19,7 +19,7 @@ RSpec.feature 'admin category create' do
       expect(page).to have_content("Howdy, admin")
     end
 
-    scenario 'does not allow admin to create a category without a name' do
+    xscenario 'does not allow admin to create a category without a name' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit new_admin_category_path
 

@@ -4,7 +4,7 @@ RSpec.describe "an order" do
 
   let!(:order)  { create(:order) }
   let!(:status) { create(:status) }
-  let!(:user)   { create(:user) }
+  let!(:user)   {RegisteredUser.create(full_name:"Tracy", email: "tslice@gmail.com", password:"password", password_confirmation: "password")}
   let!(:item)   { create(:item) }
 
   before(:each) do
@@ -27,13 +27,13 @@ RSpec.describe "an order" do
   end
 
   it "can convert a date string to datetime" do
-    date = order.date.class
-    expect(date).to eq(Date)
+    date = order.date
+    expect(date).to eq("October 4, 2015")
   end
 
   it "can convert a date string to time string" do
     time = order.time
-    expect(time).to eq("00:00")
+    expect(time).to eq("12:00 AM")
   end
 
   it "can calculate the total" do

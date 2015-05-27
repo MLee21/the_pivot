@@ -27,7 +27,7 @@ feature "a platform administrator can manage" do
     click_button "Submit"
   end
 
-  scenario "a business' items" do 
+  xscenario "a business' items" do 
     allow_any_instance_of(ApplicationController).to receive(@platform_admin).and_return(platform_admin)
     expect(current_path).to eq(platform_admin_dashboard_path)
     click_button "Aimee's Fruit Stand"
@@ -45,7 +45,7 @@ feature "a platform administrator can manage" do
     expect(page).to have_content("6.00")
   end
 
-  scenario "and update a business' information" do 
+  xscenario "and update a business' information" do 
     allow_any_instance_of(ApplicationController).to receive(@platform_admin).and_return(platform_admin)
     click_button "Aimee's Fruit Stand"
     within ".vendor_info" do 
@@ -57,7 +57,7 @@ feature "a platform administrator can manage" do
     expect(page).to have_content("Aimee's Fruits")
   end
 
-  scenario "and update a business' administrators" do 
+  xscenario "and update a business' administrators" do 
     allow_any_instance_of(ApplicationController).to receive(@platform_admin).and_return(platform_admin)
     click_button "Aimee's Fruit Stand"
     within ".vendor_admins" do 
@@ -68,21 +68,21 @@ feature "a platform administrator can manage" do
     expect(@second_admin.business_admin?).to_not be_true
   end
 
-  scenario "and approve the creation of a new business" do 
+  xscenario "and approve the creation of a new business" do 
     click_button "Pending Businesses"
     click_button "Protein Power"
     click_button "Approve"
     expect(page).to have_content("Email approval has been sent")
   end
 
-  scenario "and decline the creation of a new business" do 
+  xscenario "and decline the creation of a new business" do 
     click_button "Pending Businesses"
     click_button "Protein Power"
     click_button "Decline"
     expect(page).to have_content("Email disapproval has been sent")
   end
 
-  scenario "and take a business offline" do 
+  xscenario "and take a business offline" do 
     click_button "Aimee's Fruit Stand"
     click_link "Suspend Vendor"
     expect(page).to have_content("Are you sure you want to suspend this vendor?")
@@ -90,7 +90,7 @@ feature "a platform administrator can manage" do
     expect(page).to have_content("Vendor suspended")
   end
 
-  scenario "and take a business online" do 
+  xscenario "and take a business online" do 
     click_button "Aimee's Fruit Stand"
     click_link "De-Activate Vendor"
     expect(page).to have_content("Are you sure you want to suspend this vendor?")

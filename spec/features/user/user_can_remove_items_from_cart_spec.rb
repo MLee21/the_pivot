@@ -7,7 +7,7 @@ RSpec.feature 'user removes items from cart' do
   let!(:category) { create(:category) }
   let!(:item) { create(:item) }
 
-  scenario 'as a logged in user' do
+  xscenario 'as a logged in user' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit items_path
 
