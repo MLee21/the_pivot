@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :users
   resources :cart
   resources :charges
-  resources :vendors, only: [:show, :index]
+  resources :vendors, only: [:show, :index, :edit, :update]
 
 
   namespace :vendors, as: :vendor, path: "/:vendor" do
