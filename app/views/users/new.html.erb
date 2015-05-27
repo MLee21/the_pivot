@@ -1,6 +1,6 @@
 <%= render partial: "layouts/admin_navigation" %>
 <div class="user-form col-xs-3">
-  <%= form_for(@user) do |f| %>
+  <%= form_for(@user, url: users_path(@user)) do |f| %>
     <%= render partial: "fields", locals: { f: f } %>
     <%= f.submit "Create Account", class: "btn btn-success" %>
   <% end %>

@@ -108,7 +108,7 @@ feature "a guest user clicks on an item for a specific vendor" do
     expect(page).to have_content("No account? create one now!")
   end
 
-  xscenario "creates account in order to check out" do 
+  scenario "creates account in order to check out" do 
     click_button "Add to Basket"
     click_link_or_button "View Items in Basket (1)"
     click_button "Login to Checkout!"
@@ -116,12 +116,11 @@ feature "a guest user clicks on an item for a specific vendor" do
 
     click_button "Create Account"
     expect(current_path).to eq(new_user_path)
-
-    fill_in "user[full_name]", with: "Fred Durst"
-    fill_in "user[display_name]", with: "buckethat"
-    fill_in "user[email]", with: "rollinbitches@gmail.com"
-    fill_in "user[password]", with: "douchebag"
-    fill_in "user[password_confirmation]", with: "douchebag"
+    fill_in "registered_user[full_name]", with: "Fred Durst"
+    fill_in "registered_user[display_name]", with: "buckethat"
+    fill_in "registered_user[email]", with: "rollinbitches@gmail.com"
+    fill_in "registered_user[password]", with: "douchebag"
+    fill_in "registered_user[password_confirmation]", with: "douchebag"
     click_button("Create Account")
     expect(current_path).to eq(cart_index_path)
   end
