@@ -1,6 +1,8 @@
-<%= @vendor.name %>
-<%= link_to "View Orders", admin_orders_path %>
-<%= link_to "Current Items", admin_items_path %>
-<%= link_to "Manage Administrators", admin_admins_path %>
-<%= link_to "Edit Vendor Profile", edit_admin_vendor_path(@vendor) %>
-<%= link_to "Categories", admin_categories_path %>
+<%= render partial: "layouts/master_header" %>
+<h1><%= @vendor.name %></h1>
+<ul>
+  <li><%= link_to "View Orders", admin_orders_path %></li>
+  <li><%= link_to "Current Items", admin_items_path %></li>
+  <li><%= link_to "Manage Administrators", admin_admins_path %></li>
+  <li><%= link_to "Edit Vendor Profile", edit_admin_vendor_path(@vendor) %></li>
+</ul>
