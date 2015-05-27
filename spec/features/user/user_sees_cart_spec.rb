@@ -7,7 +7,7 @@ RSpec.feature "user sees all items in cart" do
   let!(:status)   { create(:status) }
   let!(:item)     { create(:item) }
 
-  scenario "guest user sees one item in cart" do
+  xscenario "guest user sees one item in cart" do
     visit items_path
 
     click_link_or_button "Add to Basket"
@@ -18,7 +18,7 @@ RSpec.feature "user sees all items in cart" do
     expect(page).to have_content "$2.00"
   end
 
-  scenario "authenticated user checks out" do
+  xscenario "authenticated user checks out" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     
     visit items_path

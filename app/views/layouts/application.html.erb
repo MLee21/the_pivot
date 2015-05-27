@@ -40,7 +40,7 @@
     </div>
 
   <div class="profile-sidebar">
-    <% if current_user.administrator? || current_user.registered_user? %>
+    <% if current_user.administrator? %>
       <%= render partial: "layouts/profile_sidebar" %>
     <% end %>
   </div>

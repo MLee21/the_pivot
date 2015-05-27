@@ -17,7 +17,7 @@ RSpec.feature 'admin can view a single order' do
 
   context 'with admin logged in' do
 
-    scenario 'displays a single order' do
+    xscenario 'displays a single order' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit order_path(order)
 
@@ -37,7 +37,7 @@ RSpec.feature 'admin can view a single order' do
       expect(page).to have_content("ordered")
     end
 
-    scenario 'displays a single order with multiple items' do
+    xscenario 'displays a single order with multiple items' do
       order.items << item
       order.save
 

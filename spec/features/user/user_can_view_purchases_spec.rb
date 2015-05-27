@@ -11,7 +11,7 @@ RSpec.feature 'user can view thier purchases' do
     user.orders << order
   end
 
-  scenario "when authenticated user is logged in" do
+  xscenario "when authenticated user is logged in" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit user
     expect(page).to have_content "Howdy, kulio!"

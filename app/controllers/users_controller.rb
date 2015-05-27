@@ -27,7 +27,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(current_user.id)
-
     if @user.update(user_params) && @user.authenticate(user_params[:password])
       redirect_to root_path
     else

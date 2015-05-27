@@ -10,7 +10,7 @@ RSpec.feature 'admin item creation' do
 
   context 'with admin logged in' do
     
-    scenario 'displays the items' do
+    xscenario 'displays the items' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
       visit admin_items_path
@@ -19,7 +19,7 @@ RSpec.feature 'admin item creation' do
       expect(page).to have_content("Hotdog")
     end
 
-    scenario 'allows creation of items' do
+    xscenario 'allows creation of items' do
       category.name = "All Dogs"
       category.save
 
@@ -40,7 +40,7 @@ RSpec.feature 'admin item creation' do
 
   context 'with default user logged in' do
     
-    scenario 'does not allow default user to create items' do
+    xscenario 'does not allow default user to create items' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       
       visit new_admin_item_path
@@ -48,7 +48,7 @@ RSpec.feature 'admin item creation' do
       expect(page).to have_content("The page you were looking for doesn't exist.")
     end
   
-    scenario 'displays a 404' do
+    xscenario 'displays a 404' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit admin_items_path

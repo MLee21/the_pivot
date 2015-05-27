@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do 
-  let!(:user)   { create(:user) }
-  let!(:admin)  { create(:admin) }
+  let!(:user)   {RegisteredUser.create(full_name:"Tracy", display_name: "T-Bone", email: "tslice@gmail.com", password:"password", password_confirmation: "password")}
+  let!(:admin)  {BusinessAdministrator.create(full_name:"Tracy", email: "tslice@gmail.com", password:"password", password_confirmation: "password")}
   let!(:status) { create(:status) }
   let!(:order)  { create(:order) }
   
@@ -45,14 +45,14 @@ RSpec.describe User, type: :model do
   end
 
   it "can be a default user or admin" do
-    expect(user.admin?).to eq(false)
-    expect(admin.admin?).to eq(true)
+    expect(user.business_administrator?).to eq(false)
+    expect(admin.business_administrator?).to eq(true)
   end
 
   it "returns correct display name" do
-    expect(user.name_to_display).to eq("kulio")
+    expect(user.name_to_display).to eq("T-Bone")
     user.display_name = nil
-    expect(user.name_to_display).to eq("MyName")
+    expect(user.name_to_display).to eq("Tracy")
   end
 
   it "returns orders by status" do

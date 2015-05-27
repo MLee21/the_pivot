@@ -1,7 +1,6 @@
 require "rails_helper"
 
 feature "a guest customer views list of vendors" do
-  let!(:user) {create(:user)}
   let!(:vendor) {create(:vendor)}
 
   scenario "successfully" do
