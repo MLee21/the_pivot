@@ -1,4 +1,4 @@
-<%= form_for(@vendor) do |f| %>
+<%= form_for(@vendor, url: admin_vendor_path(@vendor), method: :put) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.submit "Update" %>

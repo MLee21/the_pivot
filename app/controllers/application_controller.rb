@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= user_from_session || Guest.new
   end
-
+  
   def logged_in?
     session[:user_id].present?
   end
