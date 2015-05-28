@@ -1,9 +1,13 @@
 <%= render partial: "layouts/master_header" %>
 <h1><%= @vendor.name %></h1>
 <ul>
-  <li><%= link_to "View Orders", admin_orders_path %></li>
-  <li><%= link_to "Current Items", admin_items_path %></li>
+    <li><%= link_to "View Orders", admin_orders_path %></li>
+    <li><%= link_to "Current Items", admin_items_path %></li>
+
+  <% if current_user.first_administrator?(current_user) %>
   <li><%= link_to "Manage Administrators", admin_admins_path %></li>
-  <li><%= link_to "Edit Vendor Profile", edit_admin_vendor_path(@vendor) %></li>
-  <li><%= link_to "Categories", admin_categories_path %></li>
+  <% end %>
+
+    <li><%= link_to "Edit Vendor Profile", edit_admin_vendor_path(@vendor) %></li>
+   <li><%= link_to "Categories", admin_categories_path %></li>
 </ul>
