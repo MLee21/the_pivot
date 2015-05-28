@@ -15,7 +15,6 @@ class UsersController < ApplicationController
 
   def create
     @user = RegisteredUser.new(user_params)
-
     if @user.save
       session[:user_id] = @user.id
       redirect_to cart_index_path
