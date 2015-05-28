@@ -6,7 +6,8 @@ class Admin::OrdersController < Admin::BaseController
       @orders = Status.find(params[:status][:status_id]).orders.where(vendor_id: current_user.vendor_id)
       @list   = Status.find(params[:status][:status_id]).name
     else
-      @orders = Order.all.where(vendor_id: current_user.vendor_id)
+      oracle = Oracle.new(current_user)
+      @orders = oracle.orders
       @list   = "all orders"
     end
   end
