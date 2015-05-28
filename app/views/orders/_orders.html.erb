@@ -36,16 +36,16 @@
       <th>Date</th>
       <th># of Items</th>
       <th>Status</th>
-      <% if current_user.admin? %>
+      <% if current_user.administrator? %>
         <th>Change Status?</th>
       <% end %>
     </tr>
     </thead>
     <tbody>
-      <% orders.each do |order| %>
+      <% @orders.each do |order| %>
         <tr>
           <td>
-            <% if current_user.admin? %>
+            <% if current_user.administrator? %>
               <%= link_to "#{order.id}", admin_order_path(order) %>
             <% else %>
               <%= link_to "#{order.id}", order_path(order) %>
@@ -54,7 +54,7 @@
           <td><%= order.order_date.to_date %></td>
           <td><%= order.items.count %></td>
           <td><%= order.status.name %></td>
-          <% if current_user.admin? %>
+          <% if current_user.administrator? %>
             <td>
             <%= render partial: "admin/orders/form", locals: { order: order } %>
             </td>
