@@ -1,5 +1,6 @@
 class Vendor < ActiveRecord::Base
   has_many :items
+  has_many :orders
   has_many :business_administrators
   validates :name, presence: true, uniqueness: true, length: { minimum: 4 }
   validates :slug, presence: true, uniqueness: true
