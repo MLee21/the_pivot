@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = RegisteredUser.new(user_params)
     if @user.save
+      OrderMailer.order_notification_to_admin(@user).deliver
       session[:user_id] = @user.id
       redirect_to cart_index_path
     else

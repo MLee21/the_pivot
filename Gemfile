@@ -15,8 +15,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'validates_email_format_of'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'rails_12factor', group: :production
-gem 'faker'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'figaro'
 
 group :development, :test do
   gem 'pry'
