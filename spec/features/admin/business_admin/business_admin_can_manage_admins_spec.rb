@@ -30,17 +30,4 @@ RSpec.feature 'business admin CRUD functionality for secondary admins' do
     expect(current_path).to eq(admin_dashboard_path)
   end
 
-  xscenario 'with secondary admin logged in, admin can update their own account' do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@business_admin)
-    visit vendor_admin_path(vendor: vendor.slug)
-
-    expect(page).to have_content "Welcome, MyName!"
-    expect(page).to have_content "Peter's Produce"
-    expect(page).to have_content "Business Administrators:"
-    expect(page).to have_content "MyName"
-    expect(page).to have_link "MyName"
-    expect(page).to have_content "admin@email.com"
-    expect(page).to have_content "admin"
-    expect(page).not_to have_link "Delete Admin"
-  end
 end

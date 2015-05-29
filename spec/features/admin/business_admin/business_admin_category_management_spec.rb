@@ -1,6 +1,6 @@
 require "rails_helper"
 
-  feature "a business admin" do 
+  feature "a business admin" do
 
     before(:each) do
       @vendor = Vendor.create(name: "Peter's Produce")
@@ -14,13 +14,13 @@ require "rails_helper"
       item2 = @vendor.items.create({title: "Melon", description: "It's good for you", price: 300})
       item3 = @vendor.items.create({title: "Strawberries", description: "It's good for you", price: 400})
       item4 = @vendor2.items.create({title: "OMG gummies", description: "Ah", price: 200})
-      item.categories << category 
+      item.categories << category
       item2.categories << category2
       item3.categories << category3
       item4.categories << category3
     end
-  
-    scenario "logs in and can see all categories associated with their store" do 
+
+    scenario "logs in and can see all categories associated with their store" do
       visit root_path
       click_link "Login/Register"
       fill_in "session[email]", with: "Whatevs@gmail.com"
@@ -35,7 +35,7 @@ require "rails_helper"
       expect(page).to have_link("Categories")
     end
 
-    scenario "clicks to see all categories associated with their store" do 
+    scenario "clicks to see all categories associated with their store" do
       visit root_path
       click_link "Login/Register"
       fill_in "session[email]", with: "Whatevs@gmail.com"
@@ -47,7 +47,7 @@ require "rails_helper"
       expect(page).to have_content("Gluten-Free")
     end
 
-    scenario "clicks on a category and sees the items associated with that category for their store only" do 
+    scenario "clicks on a category and sees the items associated with that category for their store only" do
       visit root_path
       click_link "Login/Register"
       fill_in "session[email]", with: "Whatevs@gmail.com"
@@ -61,7 +61,7 @@ require "rails_helper"
       expect(page).to_not have_content("OMG gummies")
     end
 
-    scenario "edits a category" do 
+    scenario "edits a category" do
       visit root_path
       click_link "Login/Register"
       fill_in "session[email]", with: "Whatevs@gmail.com"
@@ -76,7 +76,7 @@ require "rails_helper"
       expect(page).to have_content("Non-GMO")
     end
 
-    scenario "creates a new category" do 
+    scenario "creates a new category" do
       visit root_path
       click_link "Login/Register"
       fill_in "session[email]", with: "Whatevs@gmail.com"
@@ -88,19 +88,5 @@ require "rails_helper"
       click_button "Create category"
       expect(current_path).to eq(admin_categories_path)
       expect(page).to have_content("Terribly Good for You")
-    end
-
-    xscenario "deletes a category" do 
-      visit root_path
-      click_link "Login/Register"
-      fill_in "session[email]", with: "Whatevs@gmail.com"
-      fill_in "session[password]", with: "password"
-      click_button "Submit"
-      click_link "Categories"
-      click_link "Organic"
-      click_link "Delete"
-      expect(page).to_not have_content("Organic")
-      expect(page).to have_content("Juicy")
-      expect(page).to have_content("Gluten-Free")
     end
   end
