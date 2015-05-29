@@ -29,7 +29,7 @@ class Seed
     item = {title: "Squash", description: "It's good for you", price: 200, image: open('app/assets/images/squash.jpg')}
     @vendor.items.create!(item)
     count = Item.all.count
-    range = (1..28).to_a
+    range = (1..19).to_a
 
     Vendor.all.each do |vendor|
       10.times do 
