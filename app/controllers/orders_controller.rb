@@ -19,16 +19,17 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order  = Order.generate_order(current_user)
-    order.add_items(session[:cart], order)
+    @order  = Order.generate_order(current_user)
+    @order.add_items(session[:cart], @order)
 
-    if order.save
+    if @order.save
+      OrderMailer.order_confirmation(@order).deliver_now
       flash[:notice] = "Order successfully created!"
       session[:cart] = nil
-      session[:prep_time] = order.prep_time
+      session[:prep_time] = @order.prep_time
       redirect_to charges_path
-    else
-      flash[:errors] = order.errors.full_messages.join(", ")
+    else  
+      flash[:errors] = @order.errors.full_messages.join(", ")
       redirect_to cart_index_path
     end
   end
