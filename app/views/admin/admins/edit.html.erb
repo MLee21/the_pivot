@@ -1,3 +1,4 @@
+<%= render partial: "layouts/master_header" %>
 <%= form_for(@admin, url: admin_admin_path(@admin)) do |f| %>
   <%= f.label :full_name %>
   <%= f.text_field :full_name %>

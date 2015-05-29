@@ -1,6 +1,6 @@
 <%= render partial: "layouts/vendor_header" %>
 <% @items.each do |item| %>
-<div class="row">
+
   <div class="col-md-3 items">
   <%= image_tag(item.image, class: 'single-image') %>
   <h4><%= link_to item.title, vendor_item_path(id: item.id) %></h4>
@@ -12,5 +12,5 @@
     <%= f.submit "Add to Basket", class: "reg_btn" %>
   </div>
   <% end %>
-</div>
 <% end %>
+

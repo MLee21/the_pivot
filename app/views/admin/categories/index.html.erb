@@ -1,14 +1,16 @@
+<%= render partial: "layouts/master_header" %>
 <div class="row">
-  <div class="col-md-4 col-md-offset-4 text-center">
+  <div class="col-md-12 text-center">
     <div class="g_box">
       <h3 class="greeting">All Categories:</h3>
 
       <table class="orders_table">
-        <tr>
+        <ul class="orders_table">
           <% @categories.each do |category| %>
-            <td><%= link_to category.name, admin_category_path(category) %> <%= link_to 'Edit', edit_admin_category_path(category) %></td>
+
+            <li><%= link_to category.name, admin_category_path(category) %> <%= link_to 'Edit', edit_admin_category_path(category) %></li>
           <% end %>
-        </tr>
+        </ul>
       </table>
 
       <%= button_to "Create category", new_admin_category_path, method: :get, class: "btn btn-success" %>
