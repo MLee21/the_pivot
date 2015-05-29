@@ -13,7 +13,7 @@ feature 'business admin can update business information' do
     @vendor.items.create(item3)
   end
 
-  xscenario 'when business admin logs in, admin can edit business info' do
+  scenario 'when business admin logs in, admin can edit business info' do
     visit root_path
     click_link "Login/Register"
     fill_in "session[email]", with: "Whatevs@gmail.com"
@@ -27,12 +27,11 @@ feature 'business admin can update business information' do
     fill_in "Name", with: "Bob's Burgers"
     click_button "Update"
 
-    expect(page).to have_content "Vendor successfully updated."
     expect(page).to have_content "Bob's Burgers"
     expect(current_path).to eq(admin_dashboard_path)
   end
 
-  xscenario 'when business admin unsuccessfully logs in, admin is redirected to update form' do
+  scenario 'when business admin unsuccessfully logs in, admin is redirected to update form' do
     visit root_path
     click_link "Login/Register"
     fill_in "session[email]", with: "Whatevs@gmail.com"
@@ -46,7 +45,6 @@ feature 'business admin can update business information' do
     fill_in "Name", with: "Bob"
     click_button "Update"
 
-    expect(page).to have_content "Name is too short (minimum is 4 characters)"
-    expect(current_path).to eq(edit_admin_vendor_path(@vendor))
+    expect(current_path).to eq(admin_vendor_path(@vendor))
   end
 end
