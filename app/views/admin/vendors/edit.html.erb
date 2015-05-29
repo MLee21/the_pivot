@@ -1,3 +1,4 @@
+<%= render partial: "layouts/master_header" %>
 <%= form_for(@vendor, url: admin_vendor_path(@vendor), method: :put) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>

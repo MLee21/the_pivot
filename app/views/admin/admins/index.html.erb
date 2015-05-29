@@ -9,14 +9,21 @@
 </header><!-- row -->
 <h1>Business Administrators:</h1> 
 <div>
+
+<div class="row"
+<div class="col-md-6">
+
   <ul id="admins_list">
 <% @admins.each do |admin| %>
-  <li><%= link_to admin.full_name, admin_admin_path(admin) %></li>
-  <li><%= link_to "Edit Admin", edit_admin_admin_path(admin) %></li>
+  <li><%= admin.full_name %></li>
   <li><%= admin.email %></li>
+  <li><%= link_to "Edit Admin", edit_admin_admin_path(admin) %></li>
 <% end %>
   </ul>
 </div>
+<div class="col-md-6">
+   <%= button_to "Create Admin", new_admin_admin_path, method: :get %>
+</div>
+</div><!--row-->
 
- <%= button_to "Create Admin", new_admin_admin_path, method: :get %>
 

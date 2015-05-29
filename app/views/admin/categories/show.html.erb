@@ -1,3 +1,4 @@
+<%= render partial: "layouts/master_header" %>
 <% @category_items.each do |item| %>
 <%= item.title %>
 <%= item.to_money_string(item.price) %>
