@@ -14,8 +14,7 @@ class Seed
     create_vendor_items
     create_users
     create_statuses
-    # create_items
-    # create_orders
+    create_user_orders
     create_categories
   end
 
@@ -26,12 +25,32 @@ class Seed
     end
   end
 
-
   def create_vendor_items
     item = {title: "Squash", description: "It's good for you", price: 200, image: open('app/assets/images/squash.jpg')}
     @vendor.items.create!(item)
+    count = Item.all.count
+    range = (1..28).to_a
+
+    Vendor.all.each do |vendor|
+      10.times do 
+        vendor.items.create(title: Faker::Name.title, description: Faker::Lorem.sentence, price: Faker::Commerce.price, image: File.open("app/assets/images/#{range.sample}.jpg"))
+      end
+    end
   end
 
+  def create_user_orders
+    10.times do 
+      @josh.orders.create(status_id: @ordered.id, order_date: Time.now, vendor_id: Vendor.all.sample)
+    end
+
+    @josh.orders.each do |order|
+      items = Item.take(10)
+        items.each do |item|
+          order.items << item
+        end
+    end
+  end
+ 
   def create_users
     @sam = BusinessAdministrator.create!(full_name: "Sam Sam", password: "password", email: "sam@turing.io", vendor: @vendor)
     @josh = RegisteredUser.create!(full_name: "Josh Cheek", password: "password", display_name: "josh", email: "josh@turing.io")
@@ -50,28 +69,7 @@ class Seed
     puts "Statuses created"
   end
 
-  def create_items
-    Item.create!(title: "Turing Assessment Week", description: "A miserable dog seasoned with the tears of students", price: 200, image: File.open('app/assets/images/sad_dog.jpg'))
-
-    puts "Items created"
-  end
-
-  def create_orders
-    Order.create!(user_id: @rachel.id, status_id: @ordered.id, order_date: DateTime.new(2015, 4, 5), items: [Item.find(16), Item.find(9), Item.find(16), Item.find(16), Item.find(2), Item.find(2)])
-    Order.create!(user_id: @rachel.id, status_id: @paid.id, order_date: DateTime.new(2015, 4, 6), items: [Item.find(2), Item.find(4)])
-    Order.create!(user_id: @jeff.id, status_id: @ordered.id, order_date: DateTime.new(2015, 4, 7), items: [Item.find(5)])
-    Order.create!(user_id: @jeff.id, status_id: @paid.id, order_date: DateTime.new(2015, 4, 8), items: [Item.find(4)])
-    Order.create!(user_id: @jeff.id, status_id: @completed.id, order_date: DateTime.new(2015, 4, 8), items: [Item.find(14), Item.find(13)])
-    Order.create!(user_id: @jorge.id, status_id: @completed.id, order_date: DateTime.new(2015, 4, 9), items: [Item.find(1)])
-    Order.create!(user_id: @jorge.id, status_id: @ordered.id, order_date: DateTime.new(2015, 4, 10), items: [Item.find(11)])
-    Order.create!(user_id: @jorge.id, status_id: @cancelled.id, order_date: DateTime.new(2015, 5, 5), items: [Item.find(19), Item.find(9)])
-    Order.create!(user_id: @jeff.id, status_id: @cancelled.id, order_date: DateTime.new(2015, 5, 6), items: [Item.find(18)])
-    Order.create!(user_id: @rachel.id, status_id: @paid.id, order_date: DateTime.new(2015, 5, 7), items: [Item.find(19)])
-    puts "Orders created"
-  end
-
   def create_categories
-    # Category.create!(name: "Vegetables", items: [Item.find(20), Item.find(13), Item.find(16)])
     Category.create!(name: "Vegetables")
     Category.create!(name: "Fried Goodness")
     Category.create!(name: "Fruits")
