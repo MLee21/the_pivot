@@ -23,6 +23,10 @@ class OrdersController < ApplicationController
     order.add_items(session[:cart], order)
 
     if order.save
+      @order.vendors.each do |vendor|
+        @admin = vendor.users.first
+        OrderMailer.order_notification_to_admin(@admin).deliver_now
+      end
       flash[:notice] = "Order successfully created!"
       session[:cart] = nil
       session[:prep_time] = order.prep_time
