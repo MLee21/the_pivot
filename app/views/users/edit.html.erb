@@ -4,7 +4,7 @@
     <div class="g_box">
       <div class="row">
         <div class="user-form col-xs-3">
-          <%= form_for(@user) do |f| %>
+          <%= form_for(@user, url:user_path(@user)) do |f| %>
             <%= render partial: "fields", locals: { f: f } %>
             <%= f.submit "Update Account", class: "btn btn-success" %>
           <% end %>

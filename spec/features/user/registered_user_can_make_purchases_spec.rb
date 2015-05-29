@@ -7,13 +7,22 @@ feature "a registered customer can make purchases" do
 
   before(:each) do
     @vendor = Vendor.create(name: "Peter's Produce")
+    @vendor2 = Vendor.create(name: "Jim's Juices")
+    @business_admin = BusinessAdministrator.create(full_name:"Gary Johnson", email: "Whatevs@gmail.com", password:"password", password_confirmation: "password", vendor: @vendor)
+    @business_admin2 = BusinessAdministrator.create(full_name:"Felicia Eyebrows", email: "Whatevs@gmail.com", password:"password", password_confirmation: "password", vendor: @vendor2)
+    @user = RegisteredUser.create(full_name:"Bobo", password: "yolo", password_confirmation: "yolo", email:"bobo@gmail.com")
+    @user2 = RegisteredUser.create(full_name:"Bowser", password: "yolo", password_confirmation: "yolo", email:"bowser@gmail.com")
+    @status = Status.create(name:"completed")
+    @order = @user.orders.create(status_id: @status.id, order_date: Time.now, vendor_id: @vendor.id)
+    @order2 = @user2.orders.create(status_id: @status.id, order_date: Time.now, vendor_id: @vendor2.id)
     @item = {title: "Granny Smith Apple", description: "It's green", price: 100}
-    @vendor.items.create(@item)
-    order.status_id = status.id
-    user.orders << order
+    @item1 = @vendor.items.create({title: "Melon", description: "It's good for you", price: 300})
+    @order.items << @item1
   end
 
-  xscenario "registered customer can login in add items to cart and complete purchase" do
+
+
+  scenario "registered customer can login in add items to cart and complete purchase" do
     visit root_path
     click_link("Login")
     fill_in "session[email]", with: "tslice@gmail.com"
@@ -26,13 +35,11 @@ feature "a registered customer can make purchases" do
     expect(page).to have_content("Peter's Produce")
     click_link("Peter's Produce")
     expect(current_path).to eq vendor_items_path(@vendor.slug)
-    expect(page).to have_content("Granny Smith Apple")
+    expect(page).to have_content("Melon")
     click_button("Add to Basket")
     expect(page).to have_content("View Items in Basket (1)")
     click_link("View Items in Basket (1)")
     expect(current_path).to eq cart_index_path
-    click_button("Complete Order")
-    expect(current_path).to eq charges_path
-    expect(page).to have_content("Order successfully created!")
+
   end
 end
