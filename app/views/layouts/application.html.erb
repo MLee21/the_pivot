@@ -39,14 +39,12 @@
     <% end %>
     </div>
 
-  <div class="profile-sidebar">
-    <% if current_user.administrator? %>
-      <%= render partial: "layouts/profile_sidebar" %>
-    <% end %>
-  </div>
+ 
     <%= yield %>
+    <div style="clear: both;"></div>
 
   </div>
+
 
 
 </div>
