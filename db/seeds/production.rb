@@ -52,7 +52,7 @@ class Seed
   end
  
   def create_users
-    @sam = BusinessAdministrator.create!(full_name: "Sam Sam", password: "password", email: "sam@turing.io", vendor: @vendor)
+    @sam = BusinessAdministrator.create!(full_name: "Sam Sam", password: "password", email: "sam@turing.io", vendor_id: @vendor.id)
     @josh = RegisteredUser.create!(full_name: "Josh Cheek", password: "password", display_name: "josh", email: "josh@turing.io")
     98.times do |user|
       user = RegisteredUser.create!(full_name: Faker::Name.name, password: "password", email: Faker::Internet.email)
