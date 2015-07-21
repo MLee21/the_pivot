@@ -1,4 +1,7 @@
 == README
-=== Welcome to Cowboy Kyle's Hotdog Ranch!
+=== Welcome to Cowboy Kyle's Farmers Markets!
 
 Heroku App: http://cowboy-kyles.herokuapp.com/
+
+A web application where you inherited an old code base that involved a single e-commerce store that was pivoted into a multi-tenant application. I was responsible for TDD, configuring the database and roles using single table inheritance, overall code sanitation, and deployment to Heroku.
+Tech stack: Rails, RSpec, Heroku, Bootstrap, Capybara
